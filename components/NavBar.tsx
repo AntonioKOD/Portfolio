@@ -24,14 +24,12 @@ export default function NavBar() {
           src={portfolioLogo}
           width={200}
           alt="logo"
-          
         ></Image>
         
         <div className="flex md:order-2 space-x-3 md:space-x-0">
             <div className="space-x-12 hidden lg:block">
             <Link href='#' className="hover:underline font-serif text-lg">Projects</Link>
             <Link href='#' className="hover:underline font-serif text-lg">About</Link>
-            <Link href='#' className="hover:underline font-serif text-lg">Contact</Link>
             <Link href='#' className="hover:underline font-serif text-lg">Skills</Link>
             </div>
             <div className="lg:hidden mx-auto p-14">
@@ -42,7 +40,6 @@ export default function NavBar() {
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem>Projects</DropdownMenuItem>
                 <DropdownMenuItem>About</DropdownMenuItem >
-                <DropdownMenuItem>Contact</DropdownMenuItem>
                 <DropdownMenuItem>Skills</DropdownMenuItem>
             </DropdownMenuContent>
             </DropdownMenu>
