@@ -20,7 +20,7 @@ export default function Hero() {
       <BlurIn className="text-4xl font-bold text-indigo dark:text-white" word="Coding the Digital Backbone." >
         </BlurIn>
         <BlurIn word="Creating Emotional, Meaningful & Innovative Digital Experiences" className=" m-12 text-4xl font-bold text-black dark:text-white"></BlurIn>
-        <p className="text-center text-2xl p-8 text-gray-400">I'm a software developer specialized in building exceptional digital experiences.
+        <p className="text-center text-2xl p-8 text-gray-400">I&apos;m a software developer specialized in building exceptional digital experiences.
           Providing smart solutions that enhance performance, engage customer, and foster growth.
           Designing and coding beautifully simple things.
         </p>
