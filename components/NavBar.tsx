@@ -34,7 +34,7 @@ export default function NavBar() {
             <Link href='#' className="hover:underline font-serif text-lg">Contact</Link>
             <Link href='#' className="hover:underline font-serif text-lg">Skills</Link>
             </div>
-            <div className="lg:hidden">
+            <div className="lg:hidden mx-auto p-14">
             <DropdownMenu>
             <DropdownMenuTrigger><Image src={List} alt="icon"></Image></DropdownMenuTrigger>
             <DropdownMenuContent>
