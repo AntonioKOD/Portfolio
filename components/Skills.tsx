@@ -22,7 +22,14 @@ const slugs= [
 export default function Skills(){
     return (
         <div>
-            <IconCloud iconSlugs={slugs}></IconCloud>
+            <div></div>
+        <div className="absolute right-0 flex max-w-[32rem] items-center justify-center overflow-hidden px-20 pb-20">
+            
+            <IconCloud iconSlugs={slugs}/>
+            
+           
         </div>
+        </div>
+        
     )
 }
