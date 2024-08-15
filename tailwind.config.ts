@@ -22,6 +22,8 @@ const config = {
     },
     extend: {
       colors: {
+        vivid: "#2CD4D9",
+        indigo: "#3A3D98",
         pure: "#FFFFFF",
         border: "#F0F0F0",
         input: "hsl(var(--input))",
