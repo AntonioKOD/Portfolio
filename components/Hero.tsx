@@ -9,7 +9,7 @@ import ShinyButton from "./magicui/shiny-button";
 
 export default function Hero() {
   return (
-    <div className="flex -mx-24">
+    <div className="flex -mx-24 ">
     <ShineBorder className="container mx-auto w-full relative flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl space-between space-y-6" color={["#2CD4D9","#3A3D98"]}>
       <Meteors></Meteors>
       <div className='flex flex-row'>

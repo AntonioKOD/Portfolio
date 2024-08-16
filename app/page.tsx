@@ -2,6 +2,10 @@ import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
+import { Separator } from "@/components/ui/separator";
+import  CardSkills  from "@/components/CardSkills";
+
+
 
 export default function Home() {
   return (
@@ -12,8 +16,10 @@ export default function Home() {
           <Hero></Hero>
         </div>
       </div>
-      <div>
-          <Skills></Skills>
+      
+      <div id='skills' className="p-24">
+        <Separator/>
+          <CardSkills/>
        </div>
     </div>
   );

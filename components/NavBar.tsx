@@ -28,9 +28,9 @@ export default function NavBar() {
         
         <div className="flex md:order-2 space-x-3 md:space-x-0">
             <div className="space-x-12 hidden lg:block">
-            <Link href='#' className="hover:underline font-serif text-lg">Projects</Link>
-            <Link href='#' className="hover:underline font-serif text-lg">About</Link>
-            <Link href='#' className="hover:underline font-serif text-lg">Skills</Link>
+            <Link href='#projecst' className="hover:underline font-serif text-lg">Projects</Link>
+            <Link href='#about' className="hover:underline font-serif text-lg">About</Link>
+            <Link href='#skills' className="hover:underline font-serif text-lg">Skills</Link>
             </div>
             <div className="lg:hidden mx-auto p-14">
             <DropdownMenu>
@@ -38,9 +38,9 @@ export default function NavBar() {
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Portfolio</DropdownMenuLabel>
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem>Projects</DropdownMenuItem>
-                <DropdownMenuItem>About</DropdownMenuItem >
-                <DropdownMenuItem>Skills</DropdownMenuItem>
+                <DropdownMenuItem><Link href="#projects">Projects</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="#about">About</Link></DropdownMenuItem >
+                <DropdownMenuItem><Link href="#skills">Skills</Link></DropdownMenuItem>
             </DropdownMenuContent>
             </DropdownMenu>
             </div>
