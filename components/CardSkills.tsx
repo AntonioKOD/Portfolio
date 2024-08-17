@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/popover";
 import ShinyButton from "./magicui/shiny-button";
 import { Separator } from "@radix-ui/react-dropdown-menu";
-import SparklesText from "./magicui/sparkles-text";
 import Skills from "./Skills";
 
 export default function CardSkills() {
@@ -93,7 +92,7 @@ export default function CardSkills() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            Built on Chrome's VB Javascript engine, Node.js allows me to write
+            Built on Chrome&apos;s VB Javascript engine, Node.js allows me to write
             server-side code that is fast, scalable, and efficient. It&apos;s
             perfect for handling multiple connections simultaneously, making it
             ideal for real-time applications like chat servers, APIs, and
