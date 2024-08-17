@@ -27,7 +27,7 @@ export default function Skills(){
     return (
         <div id="skills">
        
-        <div className="absolute right-32 flex max-w-[32rem] items-center justify-center overflow-hidden px-20 pb-20 ">
+        <div className=" flex max-w-[50rem] items-center justify-center overflow-hidden mx-auto ">
             
             <IconCloud iconSlugs={slugs}/>
             

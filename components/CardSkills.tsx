@@ -92,11 +92,11 @@ export default function CardSkills() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            Built on Chrome&apos;s VB Javascript engine, Node.js allows me to write
-            server-side code that is fast, scalable, and efficient. It&apos;s
-            perfect for handling multiple connections simultaneously, making it
-            ideal for real-time applications like chat servers, APIs, and
-            single-page applications. With a vast ecosystem of libraries and
+            Built on Chrome&apos;s VB Javascript engine, Node.js allows me to
+            write server-side code that is fast, scalable, and efficient.
+            It&apos;s perfect for handling multiple connections simultaneously,
+            making it ideal for real-time applications like chat servers, APIs,
+            and single-page applications. With a vast ecosystem of libraries and
             tools, Node.js allows me to build everything from simple scripts to
             complex microservices architecture.
           </CardContent>
@@ -108,6 +108,15 @@ export default function CardSkills() {
               Learn More About NodeJS
             </Link>
           </CardFooter>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Bug Whisperer</CardTitle>
+            <CardDescription>Comes with a high success rate and minimal code tears</CardDescription>
+          </CardHeader>
+          <CardContent>
+            Master of the arcane art of bug detection and elimination. With a patience of a saint and the intuition of a seasoned detective, I communicate with the mischievous bugs hiding deep within the code. Through subtle persuasion and a dash of humor, I bring them out of their hiding places, whether they&apos;re nestled in a forgotten loop or lurking in a conditional statement.
+          </CardContent>
         </Card>
         <Card className="col-span-1">
           <CardHeader>
@@ -131,7 +140,6 @@ export default function CardSkills() {
             and reliability.
           </CardContent>
         </Card>
-        <Skills></Skills>
       </div>
     </div>
   );

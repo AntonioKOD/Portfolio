@@ -20,6 +20,7 @@ export default function Home() {
       <div id='skills' className="p-24">
         <Separator/>
           <CardSkills/>
+          <Skills></Skills>
        </div>
     </div>
   );
