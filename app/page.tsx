@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import { Separator } from "@/components/ui/separator";
 import  CardSkills  from "@/components/CardSkills";
+import Projects from "@/components/Projects";
 
 
 
@@ -22,6 +23,11 @@ export default function Home() {
           <CardSkills/>
           <Skills></Skills>
        </div>
+      <div>
+        <Separator/>
+        <Projects/>
+      </div>
     </div>
+
   );
 }

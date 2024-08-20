@@ -118,7 +118,7 @@ export default function CardSkills() {
             Master of the arcane art of bug detection and elimination. With a patience of a saint and the intuition of a seasoned detective, I communicate with the mischievous bugs hiding deep within the code. Through subtle persuasion and a dash of humor, I bring them out of their hiding places, whether they&apos;re nestled in a forgotten loop or lurking in a conditional statement.
           </CardContent>
         </Card>
-        <Card className="col-span-1">
+        <Card>
           <CardHeader>
             <CardTitle>Other Skills</CardTitle>
             <CardDescription>
