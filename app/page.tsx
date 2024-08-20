@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import { Separator } from "@/components/ui/separator";
-import  CardSkills  from "@/components/CardSkills";
+import LayoutGridDemo from "@/components/CardSkills";
 import Projects from "@/components/Projects";
 
 
@@ -18,9 +18,9 @@ export default function Home() {
         </div>
       </div>
       
-      <div id='skills' className="p-24">
+      <div id='skills' className="p-12">
         <Separator/>
-          <CardSkills/>
+          <LayoutGridDemo/>
           <Skills></Skills>
        </div>
       <div>
