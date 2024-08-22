@@ -4,12 +4,15 @@ import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import { Separator } from "@/components/ui/separator";
 import LayoutGridDemo from "@/components/CardSkills";
-import Projects from "@/components/Projects";
+import DockMenu from "@/components/Docks";
+import { Projects } from "@/components/Projects";
+import Footer from "@/components/Footer";
 
 
 
 export default function Home() {
   return (
+    
     <div className="flex flex-col ">
       <NavBar></NavBar>
       <div className="mt-40">
@@ -17,7 +20,6 @@ export default function Home() {
           <Hero></Hero>
         </div>
       </div>
-      
       <div id='skills' className="p-12">
         <Separator/>
           <LayoutGridDemo/>
@@ -25,9 +27,12 @@ export default function Home() {
        </div>
       <div>
         <Separator/>
-        <Projects/>
+        <Projects />
+        <Separator/>
       </div>
+      <Footer/>
     </div>
+    
 
   );
 }
