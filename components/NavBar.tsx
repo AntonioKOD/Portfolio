@@ -28,7 +28,7 @@ export default function NavBar() {
         
         <div className="flex md:order-2 space-x-3 md:space-x-0">
             <div className="space-x-12 hidden lg:block">
-            <Link href='#projecst' className="hover:underline font-serif text-lg">Projects</Link>
+            <Link href='#projects' className="hover:underline font-serif text-lg">Projects</Link>
             <Link href='#about' className="hover:underline font-serif text-lg">About</Link>
             <Link href='#skills' className="hover:underline font-serif text-lg">Skills</Link>
             </div>

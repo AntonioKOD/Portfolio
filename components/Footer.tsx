@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { IconBrandTwitter, IconBrandGithub } from "@tabler/icons-react";
@@ -7,30 +7,25 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
 
 emailjs.init({
-    publicKey: 'YGwCQ-eUJ_tALWECM',
-    blockHeadless: false,
-    
-})
-
-
+  publicKey: "YGwCQ-eUJ_tALWECM",
+  blockHeadless: false,
+});
 
 export default function Footer() {
-    const [characterCount, setCharacterCount]= useState(0);
+  const [characterCount, setCharacterCount] = useState(0);
 
-    const getCharacter = () => {
-        if(characterCount<50){
-            toast.error("The text should be longer than 50 characters")
-        }else {
-            toast.success("Email was sent successfully")
-            window.location.reload()
-            
-        }
+  const getCharacter = () => {
+    if (characterCount < 50) {
+      toast.error("The text should be longer than 50 characters");
+    } else {
+      toast.success("Email was sent successfully");
+      window.location.reload();
     }
-    
-    
+  };
+
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       name: "",
@@ -57,8 +52,8 @@ export default function Footer() {
   };
 
   return (
-    <div className="mb-0 mx-3 flex">
-      <div>
+    <div className="mb-0 mx-3 flex lg:flex-row flex-col md:flex-col" id="about">
+      <div className="flex-col mx-auto">
         <h3 className="text-lg p-4 -mx-3 text-indigo">{"{codeWithToni}"}</h3>
         <div className="flex gap-4 pb-4">
           <Link href="https://github.com/AntonioKOD">
@@ -69,7 +64,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <div className=" p-4 mx-24 space-y-4">
+      <div className=" p-4 mx-auto space-y-4 lg:mt-0 sm:mt-6">
         <h2 className="text-xl font-bold ">Products</h2>
 
         <ul>
@@ -79,7 +74,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link href="" className="hover:underline">
+            <Link href="" className="hover:underline text-center">
               Become a Developer
             </Link>
           </li>
@@ -90,24 +85,34 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <div className="p-4 flex absolute right-[7rem] ">
-        <div>
-        <h2 className="text-xl font-bold">Contact</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <input
-            {...register("name", { required: "Full Name" })}
-            type="text"
-            className="border-2 rounded p-2 focus:bg-navy2 focus:text-black w-96"
-            placeholder="Full Name"
-          ></input>
-          <input {...register("email", {required: "Please enter email"})}
-          type="email"
-          className="border-2 rounded p-2 focus:bg-navy2 focus:text-black"
-          placeholder="Enter Email">
-          </input>
-          <Textarea {...register("message", {required: true, minLength: 50,})} onChange={(e) => setCharacterCount(e.target.value.length)}placeholder="Enter Message"></Textarea>
-            <Button onClick={getCharacter}  type="submit">Send Message</Button>
-        </form>
+      <div className="flex flex-wrap justify-center p-4 gap-4 flex-col mx-auto">
+        <div className="lg:mt-0 mt-24 md:mt-24">
+          <h2 className="text-xl font-bold mb-4">Contact</h2>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="gap-4 flex-col flex"
+          >
+            <input
+              {...register("name", { required: "Full Name" })}
+              type="text"
+              className="border-2 rounded p-2 focus:bg-navy2 focus:text-black w-96 "
+              placeholder="Full Name"
+            ></input>
+            <input
+              {...register("email", { required: "Please enter email" })}
+              type="email"
+              className="border-2 rounded p-2 focus:bg-navy2 focus:text-black"
+              placeholder="Enter Email"
+            ></input>
+            <Textarea
+              {...register("message", { required: true, minLength: 50 })}
+              onChange={(e) => setCharacterCount(e.target.value.length)}
+              placeholder="Enter Message"
+            ></Textarea>
+            <Button onClick={getCharacter} type="submit">
+              Send Message
+            </Button>
+          </form>
         </div>
       </div>
     </div>
