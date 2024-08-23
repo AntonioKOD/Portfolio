@@ -1,15 +1,13 @@
 "use client";
-
-import React, { useState } from "react";
-import { Separator } from "@/components/ui/separator";
+import React, { FormEvent, useState } from "react";
 import { IconBrandTwitter, IconBrandGithub } from "@tabler/icons-react";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
-import emailjs from "@emailjs/browser";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { toast } from "react-hot-toast";
-import { redirect } from "next/dist/server/api-utils";
+import { z } from "zod";
+
+import {EmailTemplateProps} from "./email-template";
 
 
 
@@ -17,10 +15,57 @@ import { redirect } from "next/dist/server/api-utils";
 
 export default function Footer() {
   const [characterCount, setCharacterCount] = useState(0);
-  const [formData, setFormData] = useState({name: '', email: '', message: ''})
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState<EmailTemplateProps>({
+    firstName: '',
+    email: '',
+    message: '',
+    
+  })
+  const [isSending, setIsSending] = useState<boolean>(false);
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    //confirm email and message field are not empty
+    if (!formData.email || !formData.message) {
+      toast.error("Email and message are required fields");
+      return;
+    }
+
+    try {
+      setIsSending(true);
+      const response = await fetch("/api/send/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          email: formData.email,
+          message: formData.message,
+
+        }),
+      });
+
+      // handle success
+      if (response.ok) {
+        toast.success("Email Sent Successfully!");
+        setFormData({
+          firstName: '',
+          email: "",
+          message: "",
+
+        })
+      } else {
+        toast.error("There was a problem sending email. Pls try again!");
+      }
+    } catch (error) {
+      console.log("Error sending email:", error);
+      toast.error("There was a problem sending email. Pls try again!");
+    } finally {
+      setIsSending(false);
+    }
+  };
   const getCharacter = () => {
     if (characterCount < 50) {
       toast.error("The text should be longer than 50 characters");
@@ -71,6 +116,7 @@ export default function Footer() {
         <div className="lg:mt-0 mt-24 md:mt-24">
           <h2 className="text-xl font-bold mb-4">Contact</h2>
           <form
+            onSubmit={handleSubmit}
             className="gap-4 flex-col flex"
             id="myForm"
           >
@@ -79,7 +125,7 @@ export default function Footer() {
               type="text"
               className="border-2 rounded p-2 focus:bg-navy2 focus:text-black w-96 "
               placeholder="Full Name"
-              value={formData.name} onChange={(e)=> setFormData({...formData, name: e.target.value})}
+              value={formData.firstName}onChange={(e)=> setFormData({...formData, firstName: e.target.value})}
             ></input>
             <input
               

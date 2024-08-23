@@ -1,21 +1,37 @@
 import * as React from 'react';
+import {
+    Body,
+    Container,
+    Head,
+    Hr,
+    Html,
+    Preview,
+    Text,
+} from "@react-email/components"
 
 
-interface EmailTemplateProps{
+export interface EmailTemplateProps{
     firstName: string;
     email: string;
     message: string;
 }
 
-export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>>= ({
+export const EmailTemplate: React.FC<EmailTemplateProps>= ({
     firstName,email, message,
 }) => (
-    
-    <div>
-    <h1>New Form Submission</h1>
-    <h1>Name: {JSON.stringify(firstName)}</h1>
-    <p>Email: {JSON.stringify(email)}</p>
-    <p>Message: {JSON.stringify(message)}</p>
-    </div>
+    <Html>
+        <Head/>
+        <Preview>Portfolio Message</Preview>
+        <Body>
+            <Container>
+                <Hr/>
+                <Text>{firstName}</Text>
+                <Text>{email}</Text>
+                <Text>{message}</Text>
+                <Text> Sent via Contact Form</Text>
+                
+            </Container>
+        </Body>
+    </Html>
     
 )

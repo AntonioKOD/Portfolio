@@ -1,23 +1,44 @@
-import {Resend } from "resend";
+import { NextRequest, NextResponse } from "next/server";
+import {Resend} from 'resend';
 import { EmailTemplate } from "@/components/email-template";
 
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(request: { formData: () => any; }){
-    const formData = await request.formData();
-    const name = formData.get('name') as string
-    const email = formData.get('email')as string
-    const message = formData.get('message') as string
+export async function POST(req: NextRequest){
+    const body= await req.json();
 
-    const resend = new Resend(process.env.RESEND_API_KEY)
+    const{firstName, email, message} = body;
+
+    if(!message || !email || !firstName){
+        return NextResponse.json(
+            {error: "Missing fields"}, {status: 400})
+    }
+
+    
 
     try{
-        await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
+        const {data, error} = await resend.emails.send({
+            from: `Portfolio <info@codewithtoni.com>`,
             to: 'antonio_kodheli@icloud.com',
-            subject: "New Contact Form Submission",
-           react: EmailTemplate({firstName: name, email: email, message: message})
-        });
+            subject: 'New submission',
+            react: EmailTemplate({firstName, email,message})
+        })
+        if (error) {
+            return NextResponse.json(
+              { message: "Email sending failed", error },
+              { status: 400 }
+            );
+          }
+      
+          return NextResponse.json(
+            { message: "Email sent successfully", data },
+            { status: 200 }
+          );
+        
     } catch (error){
-        return new Response(JSON.stringify({success: false}), {status: 500})
+        console.error("Error sending email: ", error);
+        return NextResponse.json({message:'Failed', error},{status:500})
     }
+
+
 }

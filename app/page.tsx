@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import { Separator } from "@/components/ui/separator";
 import LayoutGridDemo from "@/components/CardSkills";
-import DockMenu from "@/components/Docks";
 import { Projects } from "@/components/Projects";
 import Footer from "@/components/Footer";
 
