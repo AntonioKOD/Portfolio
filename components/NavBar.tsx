@@ -24,6 +24,7 @@ export default function NavBar() {
           src={portfolioLogo}
           width={200}
           alt="logo"
+          
         ></Image>
         
         <div className="flex md:order-2 space-x-3 md:space-x-0">

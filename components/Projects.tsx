@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import expressImage from "@/assets/hotel_as.png";
+import triviaImage from '@/assets/trivia.png'
 import {
   Modal,
   ModalBody,
@@ -15,7 +16,7 @@ import { motion } from "framer-motion";
 import Footer from "./Footer";
 
 export function Projects() {
-  const images = [expressImage];
+  const images = [expressImage, triviaImage];
   return (
     <div>
       <h1 className="text-center p-4 text-6xl font-bold ">Projects</h1>
@@ -69,7 +70,7 @@ export function Projects() {
               translateZ="50"
               className="text-xl font-bold text-neutral-600 dark:text-white"
             >
-              As Hotel
+              Trivia Master
             </CardItem>
             <CardItem
               as="p"
@@ -80,7 +81,7 @@ export function Projects() {
             </CardItem>
             <CardItem translateZ="100" className="w-full mt-4">
               <Image
-                src={expressImage}
+                src={triviaImage}
                 height="1000"
                 width="1000"
                 className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -91,18 +92,11 @@ export function Projects() {
               <CardItem
                 translateZ={20}
                 as={Link}
-                href="https://hotelasbaksrrjoll.com"
+                href="https://triviagame-1c98.onrender.com/"
                 target="__blank"
                 className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
               >
-                Try now →
-              </CardItem>
-              <CardItem
-                translateZ={20}
-                as="button"
-                className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-              >
-                Sign up
+                View Project →
               </CardItem>
             </div>
           </CardBody>
