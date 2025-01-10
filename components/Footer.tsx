@@ -105,11 +105,6 @@ export default function Footer() {
               Become a Developer
             </Link>
           </li>
-          <li>
-            <Link href="https://digitaldynasty.io" className="hover:underline">
-              Digital Dynasty
-            </Link>
-          </li>
         </ul>
       </div>
       <div className="flex flex-wrap justify-center p-4 gap-4 flex-col mx-auto">

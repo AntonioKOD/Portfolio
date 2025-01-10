@@ -4,6 +4,8 @@ import "./globals.css";
 import DockMenu from "@/components/Docks";
 import {Toaster} from "react-hot-toast"
 
+import SessionProviderWrapper from "@/components/SessionProviderWrapper";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}</body>
+        <SessionProviderWrapper>
+        {children}
+        </SessionProviderWrapper>
+        </body>
     </html>
   );
 }
