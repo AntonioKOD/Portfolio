@@ -1,10 +1,21 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export default function VerifyEmail() {
+// The main VerifyEmail component with a Suspense wrapper
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={<div className="text-center text-gray-500">Loading...</div>}>
+      <VerifyEmail />
+    </Suspense>
+  );
+}
+
+// The actual email verification logic
+function VerifyEmail() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -22,7 +33,7 @@ export default function VerifyEmail() {
           } else {
             setMessage('Email verified successfully! You can now log in.');
             setStatus('success');
-            router.push('/login');
+            setTimeout(() => router.push('/login'), 2000);
           }
         })
         .catch(() => {
@@ -33,7 +44,7 @@ export default function VerifyEmail() {
       setMessage('Invalid or missing token.');
       setStatus('error');
     }
-  }, [token]);
+  }, [token, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
