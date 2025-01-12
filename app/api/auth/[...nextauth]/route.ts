@@ -18,38 +18,43 @@ const handler = NextAuth({
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-    async authorize(credentials: Record<string, string> | undefined, req: Pick<RequestInternal, "query" | "body" | "headers" | "method">): Promise<{ id: string; email: string; name: string } | null> {
-      // Ensure credentials are defined
-      if (!credentials || !credentials.email || !credentials.password) {
-        throw new Error("Email and password are required");
-      }
+      async authorize(credentials: Record<string, string> | undefined, req: Pick<RequestInternal, "query" | "body" | "headers" | "method">): Promise<{ id: string; email: string; name: string } | null> {
+        // Ensure credentials are defined
+        if (!credentials || !credentials.email || !credentials.password) {
+          throw new Error("Email and password are required");
+        }
 
-      // Find user by email
-      const user = await prisma.user.findUnique({
-        where: { email: credentials.email },
-      });
+        // Find user by email
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
 
-      if (!user) {
-        throw new Error("No user found with the provided email");
-      }
+        if (!user) {
+          throw new Error("No user found with the provided email");
+        }
 
-      // Check if the user's password is valid
-      if (!user.password) {
-        throw new Error("User password is not set");
-      }
+        // Check if the user's email is verified
+        if (!user.emailVerified) {
+          throw new Error("Please verify your email before logging in.");
+        }
 
-      const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
-      if (!isPasswordValid) {
-        throw new Error("Invalid credentials");
-      }
+        // Check if the user's password is valid
+        if (!user.password) {
+          throw new Error("User password is not set");
+        }
 
-      // Return only the necessary user fields
-      return {
-        id: user.id,
-        email: user.email ?? '',
-        name: user.username ?? '',
-      };
-    },
+        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+        if (!isPasswordValid) {
+          throw new Error("Invalid credentials");
+        }
+
+        // Return only the necessary user fields
+        return {
+          id: user.id,
+          email: user.email ?? '',
+          name: user.username ?? '',
+        };
+      },
     },
   ],
   session: {
@@ -80,4 +85,4 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET, // Ensure you have a secret set in your .env
 });
 
-export {handler as GET, handler as POST};
+export { handler as GET, handler as POST };

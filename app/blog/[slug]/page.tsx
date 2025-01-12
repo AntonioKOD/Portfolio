@@ -28,21 +28,25 @@ export default async function PostPage({
 
   return (
     <main className="container mx-auto min-h-screen p-8 flex flex-col gap-6">
-      <Link href="/">
+      <Link href="/blog">
         <Button variant="ghost" className="self-start">
           ← Back to posts
         </Button>
       </Link>
       <Card className="shadow-lg">
-        {postImageUrl && (
-          <img
-            src={postImageUrl}
-            alt={post.title}
-            className="w-full h-auto rounded-t-lg"
-            width="800"
-            height="450"
-          />
-        )}
+      {postImageUrl ? (
+  <img
+    src={postImageUrl}
+    alt={post.title}
+    className="w-full h-auto rounded-t-lg"
+    width="800"
+    height="450"
+  />
+) : (
+  <div className="w-full h-56 bg-gray-200 rounded-t-lg flex items-center justify-center">
+    <span className="text-gray-500">No image available</span>
+  </div>
+)}
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary">
             {post.title}

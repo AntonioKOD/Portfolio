@@ -1,3 +1,4 @@
+// app/blog/page.js
 import Link from 'next/link';
 import { client } from '@/lib/sanity';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -10,18 +11,20 @@ const POSTS_QUERY = `*[
   _id, title, slug, publishedAt
 }`;
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function BlogPage() {
-  let posts: SanityDocument[] = [];
+  let posts: SanityDocument[]= [];
 
   try {
     posts = await client.fetch(POSTS_QUERY);
-
-    if (!posts.length) {
-      return <p className="text-center text-gray-500">No blog posts available.</p>;
-    }
   } catch (error) {
     console.error('Error fetching posts:', error);
     return <p className="text-center text-red-500">Error fetching blog posts. Please try again later.</p>;
+  }
+
+  if (!posts.length) {
+    return <p className="text-center text-gray-500">No blog posts available.</p>;
   }
 
   return (

@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import DockMenu from "@/components/Docks";
 import {Toaster} from "react-hot-toast"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
 
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
+import { AppSideBar } from "@/components/AppSidebar";
 
 
 const inter = Inter({ subsets: ["latin"] });

@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const schema = z.object({
-  email: z.string().email(),
+  email: z.string().email().transform((value) => value.trim()),
   password: z
     .string()
     .min(8, { message: "Be at least 8 characters long" })
@@ -28,8 +28,8 @@ const schema = z.object({
     .regex(/[^a-zA-Z0-9]/, {
       message: "Contain at least one special character.",
     })
-    .trim(),
-  name: z.string().min(5),
+    .transform((value) => value.trim()),
+  name: z.string().min(5).transform((value) => value.trim()),
 });
 
 export default function SignupPage() {
@@ -38,9 +38,9 @@ export default function SignupPage() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: "",
-      password: "",
-      name: "",
+      email: "".trim(),
+      password: "".trim(),
+      name: "".trim(),
     },
   });
 
@@ -53,7 +53,7 @@ export default function SignupPage() {
 
     if (res.ok) {
       console.log(values);
-      router.push("/login");
+      router.push("/verify-notice");
     } else {
       alert("Error creating account");
 
