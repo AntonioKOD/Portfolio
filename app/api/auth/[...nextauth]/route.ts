@@ -78,10 +78,6 @@ const handler = NextAuth({
       return token;
     },
   },
-  pages: {
-    signIn: "/dashboard", // Optional: custom sign-in page
-    error: "/auth/error", // Optional: error redirect page
-  },
   secret: process.env.NEXTAUTH_SECRET, // Ensure you have a secret set in your .env
 });
 

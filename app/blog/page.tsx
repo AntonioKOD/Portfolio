@@ -34,7 +34,7 @@ export default async function BlogPage() {
         {posts.map((post) => (
           <Card key={post._id} className="hover:shadow-lg transition-shadow duration-300">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold text-secondary">{post.title}</CardTitle>
+              <CardTitle className="text-xl font-semibold text-black">{post.title}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">Published on {new Date(post.publishedAt).toLocaleDateString()}</p>

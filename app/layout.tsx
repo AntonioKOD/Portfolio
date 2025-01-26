@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import DockMenu from "@/components/Docks";
 import {Toaster} from "react-hot-toast"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 

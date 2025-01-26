@@ -4,12 +4,12 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import expressImage from "@/assets/hotel_as.png";
-import triviaImage from '@/assets/trivia.png'
+import sceneImage from '@/public/scenematch.png'
 import ecomImage from '@/assets/ecom.png'
 import inventoryImage from '@/assets/inventory.png'
 
 export function Projects() {
-  const images = [expressImage, triviaImage];
+  const images = [expressImage];
   return (
     <div>
       <h1 className="text-center p-4 text-6xl font-bold ">Projects</h1>
@@ -74,7 +74,7 @@ export function Projects() {
             </CardItem>
             <CardItem translateZ="100" className="w-full mt-4">
               <Image
-                src={triviaImage}
+                src={sceneImage}
                 height="1000"
                 width="1000"
                 className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -85,7 +85,7 @@ export function Projects() {
               <CardItem
                 translateZ={20}
                 as={Link}
-                href="https://triviagame-1c98.onrender.com/"
+                href="https://sceneconnect.vercel.app/"
                 target="__blank"
                 className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
               >
