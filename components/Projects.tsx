@@ -63,7 +63,7 @@ export function Projects() {
               translateZ="50"
               className="text-xl font-bold text-neutral-600 dark:text-white"
             >
-              Trivia Master
+              SceneMatch: A Social Media Platform
             </CardItem>
             <CardItem
               as="p"
