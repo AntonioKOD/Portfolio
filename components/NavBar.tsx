@@ -19,19 +19,21 @@ export default function NavBar() {
     <div>
     <div className="bg-white dark:bg-gray fixed w-full z-20 top-0 start-0 border-b-4 border-border-900 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto -m-12">
-        
+        <Link href={'/'}>
         <Image
           src={portfolioLogo}
           width={200}
           alt="logo"
           
         ></Image>
+        </Link>
         
         <div className="flex md:order-2 space-x-3 md:space-x-0">
             <div className="space-x-12 hidden lg:block">
-            <Link href='#projects' className="hover:underline font-serif text-lg">Projects</Link>
-            <Link href='#about' className="hover:underline font-serif text-lg">About</Link>
-            <Link href='#skills' className="hover:underline font-serif text-lg">Skills</Link>
+            <Link href='/services' className="hover:underline font-serif text-lg">Services</Link>
+            <Link href='/#projects' className="hover:underline font-serif text-lg">Projects</Link>
+            <Link href='/#about' className="hover:underline font-serif text-lg">Contact</Link>
+            <Link href='/#skills' className="hover:underline font-serif text-lg">Skills</Link>
             </div>
             <div className="lg:hidden mx-auto p-14">
             <DropdownMenu>
@@ -39,9 +41,11 @@ export default function NavBar() {
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Portfolio</DropdownMenuLabel>
                 <DropdownMenuSeparator/>
+                <DropdownMenuItem><Link href="/services">Services</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link href="#projects">Projects</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="#about">About</Link></DropdownMenuItem >
+                <DropdownMenuItem><Link href="/#about">Contact</Link></DropdownMenuItem >
                 <DropdownMenuItem><Link href="#skills">Skills</Link></DropdownMenuItem>
+                
             </DropdownMenuContent>
             </DropdownMenu>
             </div>

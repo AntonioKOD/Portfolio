@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import {Toaster} from "react-hot-toast"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import NavBar from "@/components/NavBar";
 
 
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SessionProviderWrapper>
+          <NavBar/>
         {children}
         </SessionProviderWrapper>
         </body>

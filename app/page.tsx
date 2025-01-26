@@ -13,7 +13,6 @@ export default function Home() {
   return (
     
     <div className="flex flex-col w-full h-full overflow-auto relative">
-      <NavBar></NavBar>
       <div className="mt-40">
         <div className="px-36">
           <Hero></Hero>
@@ -24,9 +23,9 @@ export default function Home() {
           <LayoutGridDemo/>
           <Skills></Skills>
        </div>
-      <div>
-        <Separator/>
-        <Projects />
+      <div id="projects">
+        <Separator />
+        <Projects  />
         <Separator/>
       </div>
       <div>
