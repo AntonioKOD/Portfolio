@@ -18,7 +18,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: Record<string, string> | undefined, req: Pick<RequestInternal, "query" | "body" | "headers" | "method">): Promise<{ id: string; email: string; name: string } | null> {
+      async authorize(credentials: Record<string, string> | undefined, req: Pick<RequestInternal, "query" | "body" | "headers" | "method">) {
         // Ensure credentials are defined
         if (!credentials || !credentials.email || !credentials.password) {
           throw new Error("Email and password are required");
@@ -67,12 +67,12 @@ const handler = NextAuth({
       }
       return session;
     },
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user }) {
       if (user) {
         token.user = {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: user.username,
         };
       }
       return token;

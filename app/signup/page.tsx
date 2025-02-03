@@ -1,11 +1,13 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+
 
 import {
   Form,
@@ -122,6 +124,7 @@ export default function SignupPage() {
               Password must be at least 8 characters long and contain at least
               one letter, one number, and one special character.
             </FormDescription>
+            <p>Already have an account? <Link href='/login' className="text-indigo font-bold underline">Log in</Link></p>
             <Button
               type="submit"
               className="w-full bg-indigo py-2 rounded-md hover:bg-indigo-600 transition"

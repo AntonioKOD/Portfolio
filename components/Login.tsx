@@ -8,6 +8,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }).transform((value)=> value.trim()),
@@ -34,7 +35,7 @@ export default function LoginPage() {
    
     if(res?.ok){
       console.log(values);
-      router.push('/dashboard');
+      router.push('/templates');
     }else{
       alert("Error logging in");
     }
@@ -75,6 +76,7 @@ export default function LoginPage() {
                 </FormItem>
               )}
             />
+            <p>Don't have an account? <Link href={'/signup'} className="font-bold underline text-indigo">Sign Up</Link></p>
             <Button type="submit" className="w-full bg-indigo text-white hover:bg-indigo-600">
               Login
             </Button>
