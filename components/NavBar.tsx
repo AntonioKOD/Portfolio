@@ -45,7 +45,7 @@ export default function NavBar() {
             {user ? (
                <><Link href="/templates">Templates</Link><Button onClick={() => signOut({callbackUrl: '/'})}>Logout</Button></>)
               : (
-                <Link href="/login">Login</Link>
+                <Link href="/login"><Button>Login</Button></Link>
               )}
             </div>
             <div className="lg:hidden mx-auto p-14">
@@ -61,7 +61,7 @@ export default function NavBar() {
                 {user ? (
                 <><DropdownMenuItem><Link href="/templates">Templates</Link></DropdownMenuItem><Button onClick={() => signOut({callbackUrl: '/'})} className="mt-4 mx-4">Logout</Button></>)
                 : (
-                  <DropdownMenuItem><Link href="/login">Login</Link></DropdownMenuItem>
+                  <DropdownMenuItem><Link href="/login"><Button>Login</Button></Link></DropdownMenuItem>
                 )}
                 
             </DropdownMenuContent>

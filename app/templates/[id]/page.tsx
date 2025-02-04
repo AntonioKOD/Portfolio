@@ -8,6 +8,7 @@ import { getTemplate } from "../actions"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import Icon from '@/components/Icon'
+import {Copy} from 'lucide-react'
 
 interface Template {
     id: string
@@ -25,7 +26,7 @@ export default function TemplatePage({ params }: { params: { id: string } }) {
     const { id } = params;
 
     const [template, setTemplate] = React.useState<Template | null>(null);
-
+    const [copied, setCopied] = React.useState(false)
     React.useEffect(() => {
         async function fetchTemplate() {
             const template = await getTemplate(id);
@@ -33,6 +34,20 @@ export default function TemplatePage({ params }: { params: { id: string } }) {
         }
         fetchTemplate();
     }, [id]);
+   
+    const handleCopy = ()=> {
+        if (template) {
+            navigator.clipboard.writeText(template.install).then(()=> {
+                setCopied(true)
+                setTimeout(()=> {
+                    setCopied(false)
+                }, 2000)
+            }).catch((err)=> {
+                console.error(err)
+            }
+            )
+        }
+    }
 
     if (!template) {
         return (
@@ -88,7 +103,7 @@ export default function TemplatePage({ params }: { params: { id: string } }) {
                             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                                 <div className="w-full sm:w-auto">
                                     <h4 className="text-sm font-semibold mb-2">Installation</h4>
-                                    <code className="bg-muted p-2 rounded text-sm block">{template.install}</code>
+                                    <code className="bg-muted p-2 rounded text-sm block">{template.install}<Button onClick={handleCopy} className="mx-4"><Copy className="w-4 h-4 mr-1"/>{copied? 'Copied!' : 'Copy'}</Button></code>
                                 </div>
                                 <div className="flex gap-4">
                                     <Button variant="outline" onClick={() => window.open(template.previewLink, '_blank')}>
