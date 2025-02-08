@@ -4,6 +4,7 @@ import "./globals.css";
 import {Toaster} from "react-hot-toast"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import NavBar from "@/components/NavBar";
+import {GoogleAnalytics } from '@next/third-parties/google'
 
 
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SessionProviderWrapper>
           <NavBar/>
+          <GoogleAnalytics gaId="G-D9B66HCXSY"/>
         {children}
         </SessionProviderWrapper>
         </body>
