@@ -96,7 +96,7 @@ export default function Footer() {
 
         <ul>
           <li>
-            <Link href="" className="hover:underline">
+            <Link href="/templates" className="hover:underline">
               Templates
             </Link>
           </li>
