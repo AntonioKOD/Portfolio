@@ -7,6 +7,7 @@ import { config as sanityConfig, client } from "@/lib/sanity"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react"
+import Head from "next/head"
 
 const builder = imageUrlBuilder({
   ...sanityConfig,
@@ -49,6 +50,12 @@ export default async function BlogPost({ params }: PostPageProps) {
   const postImageUrl = post?.mainImage ? urlFor(post.mainImage).width(1200).height(600).url() : null
 
   return (
+    <>
+    <Head>
+      <title>{post.title} | My Blog</title>
+      <meta name="description" content={post.excerpt} />
+      <Link rel='canonical' href={`https://www.codewithtoni.com/blog/${post.slug}`}></Link>
+    </Head>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 mt-28">
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <Link href="/blog" className="inline-block mb-8">
@@ -126,6 +133,7 @@ export default async function BlogPost({ params }: PostPageProps) {
         </div>
       </main>
     </div>
+    </>
   )
 }
 

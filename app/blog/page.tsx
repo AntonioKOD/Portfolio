@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button"
 import type { SanityDocument } from "next-sanity"
 import { CalendarIcon, ArrowRightIcon, BookOpenIcon } from "lucide-react"
+import Head from "next/head"
 
 const POSTS_QUERY = `*[
   _type == "post" && defined(slug.current)
@@ -31,6 +32,15 @@ export default async function BlogPage() {
   const regularPosts = posts.slice(1)
 
   return (
+    <>
+    <Head>
+      <title>My Tech Blog | Latest Posts & Insights</title>
+      <meta
+        name="description"
+        content="Explore my latest thoughts, ideas, and insights on various topics in web development and technology."
+      />
+      <link rel="canonical" href="https://www.codewithtoni.com/blog" />
+    </Head>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 mt-28">
       <div className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-primary">Our Blog</h1>
@@ -119,7 +129,9 @@ export default async function BlogPage() {
         </div>
       </div>
     </div>
+    </>
   )
+  
 }
 
 function ErrorState() {
