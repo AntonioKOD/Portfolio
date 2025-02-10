@@ -42,6 +42,7 @@ export default function NavBar() {
             <Link href='/#projects' className="hover:underline font-serif text-lg">Projects</Link>
             <Link href='/#about' className="hover:underline font-serif text-lg">Contact</Link>
             <Link href='/#skills' className="hover:underline font-serif text-lg">Skills</Link>
+            <Link href='/blog' className="hover:underline font-serif text-lg">Blog</Link>
             {user ? (
                <><Link href="/templates">Templates</Link><Button onClick={() => signOut({callbackUrl: '/'})}>Logout</Button></>)
               : (
@@ -58,6 +59,7 @@ export default function NavBar() {
                 <DropdownMenuItem><Link href="/#projects">Projects</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link href="/#about">Contact</Link></DropdownMenuItem >
                 <DropdownMenuItem><Link href="/#skills">Skills</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/blog">Blog</Link></DropdownMenuItem>
                 {user ? (
                 <><DropdownMenuItem><Link href="/templates">Templates</Link></DropdownMenuItem><Button onClick={() => signOut({callbackUrl: '/'})} className="mt-4 mx-4">Logout</Button></>)
                 : (
