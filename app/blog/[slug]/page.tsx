@@ -52,10 +52,35 @@ export default async function BlogPost({ params }: PostPageProps) {
   return (
     <>
     <Head>
-      <title>{post.title} | My Blog</title>
-      <meta name="description" content={post.excerpt} />
-      <Link rel='canonical' href={`https://www.codewithtoni.com/blog/${post.slug}`}></Link>
-    </Head>
+  <title>{post.title} | My Blog</title>
+  <meta name="description" content={post.excerpt || "Default description for My Blog."} />
+  <link rel="canonical" href={`https://www.codewithtoni.com/blog/${post.slug}`} />
+  {/* Open Graph Tags */}
+  <meta property="og:title" content={`${post.title} | My Blog`} />
+  <meta property="og:description" content={post.excerpt || "Default description for My Blog."} />
+  <meta property="og:url" content={`https://www.codewithtoni.com/blog/${post.slug}`} />
+  <meta property="og:type" content="article" />
+  {postImageUrl && <meta property="og:image" content={postImageUrl} />}
+  {/* Twitter Card Tags */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${post.title} | My Blog`} />
+  <meta name="twitter:description" content={post.excerpt || "Default description for My Blog."} />
+  {postImageUrl && <meta name="twitter:image" content={postImageUrl} />}
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "image": postImageUrl ? [postImageUrl] : [],
+    "author": {
+      "@type": "Person",
+      "name": post.author?.name || "codeWithToni"
+    },
+    "datePublished": new Date(post.publishedAt).toISOString(),
+    "description": post.excerpt || "Default description for My Blog."
+  })}
+</script>
+</Head>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 mt-28">
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <Link href="/blog" className="inline-block mb-8">

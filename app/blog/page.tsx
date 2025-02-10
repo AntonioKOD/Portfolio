@@ -31,79 +31,81 @@ export default async function BlogPage() {
   const featuredPost = posts[0]
   const regularPosts = posts.slice(1)
 
+  // Create JSON-LD structured data for the blog and its posts.
+  const blogStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "My Tech Blog",
+    "url": "https://www.codewithtoni.com/blog",
+    "description": "Explore my latest thoughts, ideas, and insights on various topics in web development and technology.",
+    "blogPost": posts.map((post: any) => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "datePublished": new Date(post.publishedAt).toISOString(),
+      "description": post.excerpt,
+      "url": `https://www.codewithtoni.com/blog/${post.slug.current}`,
+      "wordCount": post.estimatedReadingTime ? post.estimatedReadingTime * 200 : undefined // Assuming 200 words per minute read time as an approximation
+    }))
+  }
+
   return (
     <>
-    <Head>
-      <title>My Tech Blog | Latest Posts & Insights</title>
-      <meta
-        name="description"
-        content="Explore my latest thoughts, ideas, and insights on various topics in web development and technology."
-      />
-      <link rel="canonical" href="https://www.codewithtoni.com/blog" />
-    </Head>
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 mt-28">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-primary">Our Blog</h1>
-        <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Explore my latest thoughts, ideas, and insights on various topics in web development and technology.
-        </p>
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>My Tech Blog | Latest Posts & Insights</title>
+        <meta
+          name="description"
+          content="Explore my latest thoughts, ideas, and insights on various topics in web development and technology."
+        />
+        <link rel="canonical" href="https://www.codewithtoni.com/blog" />
 
-        {/* Featured Post */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-semibold mb-6 text-foreground">Featured Post</h2>
-          <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-primary hover:text-primary/80 transition-colors duration-200">
-                <Link href={`/blog/${featuredPost.slug.current}`}>{featuredPost.title}</Link>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4 text-lg">{featuredPost.excerpt}</p>
-              <div className="flex items-center text-sm text-muted-foreground space-x-4">
-                <div className="flex items-center">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
-                  <time dateTime={featuredPost.publishedAt}>
-                    {new Date(featuredPost.publishedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                </div>
-                <div className="flex items-center">
-                  <BookOpenIcon className="w-4 h-4 mr-2" />
-                  <span>{featuredPost.estimatedReadingTime} min read</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Link href={`/blog/${featuredPost.slug.current}`} className="w-full">
-                <Button variant="default" className="w-full group">
-                  Read Featured Post
-                  <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="My Tech Blog | Latest Posts & Insights" />
+        <meta
+          property="og:description"
+          content="Explore my latest thoughts, ideas, and insights on various topics in web development and technology."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.codewithtoni.com/blog" />
+        <meta property="og:image" content="https://www.codewithtoni.com/default-og-image.png" />
 
-        {/* Regular Posts */}
-        <h2 className="text-2xl font-semibold mb-6 text-foreground">Latest Posts</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {regularPosts.map((post) => (
-            <Card key={post._id} className="flex flex-col bg-card hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="flex-grow">
-                <CardTitle className="text-xl font-semibold text-primary hover:text-primary/80 transition-colors duration-200">
-                  <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="My Tech Blog | Latest Posts & Insights" />
+        <meta
+          name="twitter:description"
+          content="Explore my latest thoughts, ideas, and insights on various topics in web development and technology."
+        />
+        <meta name="twitter:image" content="https://www.codewithtoni.com/default-twitter-image.png" />
+
+        {/* Structured Data JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(blogStructuredData)}
+        </script>
+      </Head>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 mt-28">
+        <div className="container mx-auto px-4 py-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-primary">My Blog</h1>
+          <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Explore my latest thoughts, ideas, and insights on various topics in web development and technology.
+          </p>
+
+          {/* Featured Post */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-6 text-foreground">Featured Post</h2>
+            <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
+              <CardHeader>
+                <CardTitle className="text-3xl font-bold text-primary hover:text-primary/80 transition-colors duration-200">
+                  <Link href={`/blog/${featuredPost.slug.current}`}>{featuredPost.title}</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+                <p className="text-muted-foreground mb-4 text-lg">{featuredPost.excerpt}</p>
                 <div className="flex items-center text-sm text-muted-foreground space-x-4">
                   <div className="flex items-center">
                     <CalendarIcon className="w-4 h-4 mr-2" />
-                    <time dateTime={post.publishedAt}>
-                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    <time dateTime={featuredPost.publishedAt}>
+                      {new Date(featuredPost.publishedAt).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
@@ -112,26 +114,65 @@ export default async function BlogPage() {
                   </div>
                   <div className="flex items-center">
                     <BookOpenIcon className="w-4 h-4 mr-2" />
-                    <span>{post.estimatedReadingTime} min read</span>
+                    <span>{featuredPost.estimatedReadingTime} min read</span>
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href={`/blog/${post.slug.current}`} className="w-full">
-                  <Button variant="outline" className="w-full group">
-                    Read More
+                <Link href={`/blog/${featuredPost.slug.current}`} className="w-full">
+                  <Button variant="default" className="w-full group">
+                    Read Featured Post
                     <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </Button>
                 </Link>
               </CardFooter>
             </Card>
-          ))}
+          </div>
+
+          {/* Regular Posts */}
+          <h2 className="text-2xl font-semibold mb-6 text-foreground">Latest Posts</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {regularPosts.map((post) => (
+              <Card key={post._id} className="flex flex-col bg-card hover:shadow-xl transition-shadow duration-300">
+                <CardHeader className="flex-grow">
+                  <CardTitle className="text-xl font-semibold text-primary hover:text-primary/80 transition-colors duration-200">
+                    <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+                  <div className="flex items-center text-sm text-muted-foreground space-x-4">
+                    <div className="flex items-center">
+                      <CalendarIcon className="w-4 h-4 mr-2" />
+                      <time dateTime={post.publishedAt}>
+                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
+                    </div>
+                    <div className="flex items-center">
+                      <BookOpenIcon className="w-4 h-4 mr-2" />
+                      <span>{post.estimatedReadingTime} min read</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Link href={`/blog/${post.slug.current}`} className="w-full">
+                    <Button variant="outline" className="w-full group">
+                      Read More
+                      <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </>
   )
-  
 }
 
 function ErrorState() {
@@ -165,4 +206,3 @@ function EmptyState() {
     </div>
   )
 }
-
