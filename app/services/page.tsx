@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import ServiceCard from "@/components/service-card"
 import { Layout, Cpu, Code, Layers, Zap, MessageSquare, PenTool, Database, Globe, LineChart } from "lucide-react"
 import { ServicesIllustration } from "@/components/services-illustration"
-import { CustomWebsiteBenefits } from "@/components/custom-website-benefits"
+
 import { BenefitsIllustration } from "@/components/benefits-illustration"
 
 export default function ServicesPage() {
