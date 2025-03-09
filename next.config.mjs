@@ -17,6 +17,7 @@ const nextConfig = {
     },
     experimental: {
     optimizeCss: true,
+    optimizeFonts: false,
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
     serverActions: {
       bodySizeLimit: '2mb',
