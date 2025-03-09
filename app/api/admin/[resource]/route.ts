@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 
 
 // GET handler for fetching resources
-export async function GET(request: NextRequest, { params }: { params: { resource: string } }) {
-  const { resource } = params
+export async function GET(request: NextRequest, { params }: { params: Promise<{ resource: string }> }) {
+  const { resource } = await params
   const searchParams = request.nextUrl.searchParams
 
   // Handle pagination
@@ -49,8 +49,8 @@ export async function GET(request: NextRequest, { params }: { params: { resource
 }
 
 // POST handler for creating resources
-export async function POST(request: NextRequest, { params }: { params: { resource: string } }) {
-  const { resource } = params
+export async function POST(request: NextRequest, { params }: { params: Promise<{ resource: string }> }) {
+  const { resource } = await params
   const data = await request.json()
 
   try {

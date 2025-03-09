@@ -17,12 +17,13 @@ const nextConfig = {
     },
     experimental: {
     optimizeCss: true,
-    optimizeFonts: false,
+    
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
     serverActions: {
       bodySizeLimit: '2mb',
     },
-    metadataBase: 'https://www.codewithtoni.com'
+    metadataBase: 'https://www.codewithtoni.com',
+    optimizeFonts: true,
   },
   // Enable static optimization where possible
   reactStrictMode: true,

@@ -28,7 +28,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
 }`
 
 interface PostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 async function getPost(slug: string) {
@@ -45,7 +45,7 @@ async function getPost(slug: string) {
 }
 
 export default async function BlogPost({ params }: PostPageProps) {
-  const post = await getPost(params.slug)
+  const post = await getPost((await params).slug)
 
   const postImageUrl = post?.mainImage ? urlFor(post.mainImage).width(1200).height(600).url() : null
 

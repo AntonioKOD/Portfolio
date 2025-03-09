@@ -34,10 +34,10 @@ const POSTS_QUERY = `*[
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
-export default async function BlogPage({ searchParams }: { searchParams?: { search?: string } }) {
+export default async function BlogPage({ searchParams }: { searchParams?: Promise<{ search?: string }> }) {
   let posts: SanityDocument[] = []
 
-  const searchQuery = searchParams?.search
+  const searchQuery = (await searchParams)?.search
 
   const updatedPostsQuery = `*[
     _type == "post" && defined(slug.current)

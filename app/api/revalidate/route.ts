@@ -1,8 +1,7 @@
-
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: NextRequest) {
   // Check for secret to confirm this is a valid request
   const secret = req.headers.get('x-sanity-secret');
   if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
@@ -11,12 +10,12 @@ export async function POST(req: Request, res: Response) {
 
   try {
     // Revalidate the blog index page
-    await revalidatePath('/blog');
+    revalidatePath('/blog');
 
     // Optionally, revalidate individual post pages if the slug is provided
     const { slug } = await req.json();
     if (slug) {
-      await revalidatePath(`/blog/${slug}`);
+      revalidatePath(`/blog/${slug}`);
     }
 
     return NextResponse.json({ revalidated: true });

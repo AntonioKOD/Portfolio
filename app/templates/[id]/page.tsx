@@ -23,8 +23,8 @@ interface Template {
   createdAt?: Date | string | null
 }
 
-export default function TemplatePage({ params }: { params: { id: string } }) {
-  const { id } = params
+export default async function TemplatePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
 
   const [template, setTemplate] = React.useState<Template | null>(null)
   const [copied, setCopied] = React.useState(false)

@@ -6,33 +6,35 @@ const prisma = new PrismaClient()
 
 
 // GET handler for fetching a single resource
-export async function GET(request: NextRequest, { params }: { params: { resource: string; id: string } }) {
-  const { resource, id } = params
+
+
+export async function GET(request: NextRequest, context: { params: Promise<{ resource: string; id: string }> }) {
+  const { resource, id } = await context.params;
 
   try {
-    const model = getModelForResource(resource)
+    const model = getModelForResource(resource);
     if (!model) {
-      return NextResponse.json({ error: `Resource ${resource} not found` }, { status: 404 })
+      return NextResponse.json({ error: `Resource ${resource} not found` }, { status: 404 });
     }
 
     const data = await (model as any).findUnique({
       where: { id },
-    })
+    });
 
     if (!data) {
-      return NextResponse.json({ error: `${resource} with id ${id} not found` }, { status: 404 })
+      return NextResponse.json({ error: `${resource} with id ${id} not found` }, { status: 404 });
     }
 
-    return NextResponse.json(data)
+    return NextResponse.json(data);
   } catch (error) {
-    console.error(`Error fetching ${resource}:`, error)
-    return NextResponse.json({ error: `Failed to fetch ${resource}: ${(error as any).message}` }, { status: 500 })
+    console.error(`Error fetching ${resource}:`, error);
+    return NextResponse.json({ error: `Failed to fetch ${resource}: ${(error as any).message}` }, { status: 500 });
   }
 }
 
 // PUT handler for updating a resource
-export async function PUT(request: NextRequest, { params }: { params: { resource: string; id: string } }) {
-  const { resource, id } = params
+export async function PUT(request: NextRequest, context : { params: Promise<{ resource: string; id: string }> }) {
+  const { resource, id } = await context.params
   const data = await request.json()
 
   try {
@@ -54,8 +56,8 @@ export async function PUT(request: NextRequest, { params }: { params: { resource
 }
 
 // DELETE handler for deleting a resource
-export async function DELETE(request: NextRequest, { params }: { params: { resource: string; id: string } }) {
-  const { resource, id } = params
+export async function DELETE(request: NextRequest, context: { params: Promise<{ resource: string; id: string }> }) {
+  const { resource, id } = await context.params
 
   try {
     const model = getModelForResource(resource)

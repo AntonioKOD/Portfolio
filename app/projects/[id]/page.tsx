@@ -21,7 +21,7 @@ interface Project {
   updatedAt: string
 }
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
+export default function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const [project, setProject] = useState<Project | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -29,10 +29,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   const isAdmin = session?.user?.email === "antonio_kodheli@icloud.com"
 
   useEffect(() => {
-    async function fetchProject() {
+    const fetchProject = async () => {
       try {
-        setIsLoading(true)
-        const projectData = await getProjectById(params.id)
+        const projectData = await getProjectById((await params).id)
         if (projectData) {
           setProject({
             id: projectData.id,
@@ -54,7 +53,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     }
 
     fetchProject()
-  }, [params.id])
+  }, [params])
 
   if (isLoading) {
     return (
