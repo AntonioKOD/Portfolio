@@ -69,6 +69,12 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
+
+            {user?.email === "antonio_kodheli@icloud.com" && (
+              <Link href="/admin" className="text-sm font-medium transition-colors hover:text-primary">
+                Admin Dashboard
+                </Link>
+                )}
         </nav>
 
         <div className="flex items-center gap-2">

@@ -73,7 +73,7 @@ export default function LoginPage() {
         ])
         
         // Redirect after a short delay
-        setTimeout(() => router.push('/templates'), 1000)
+        setTimeout(() => router.push('/web-templates'), 1000)
       } else {
         setLoginError("Invalid email or password. Please try again.")
         setTerminalLines((prev) => [
