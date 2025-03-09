@@ -503,7 +503,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      {/*<section className="py-16 md:py-24 bg-muted/30">
         <div className="container px-4 md:px-6">
           <ScrollAnimationObserver animation="fade-up">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
@@ -550,7 +550,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
