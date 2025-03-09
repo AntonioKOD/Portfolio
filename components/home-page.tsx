@@ -48,26 +48,26 @@ export default function HomePage() {
   const [templates, setTemplates] = useState<Template[]>([])
 
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-        const data = await getProjects()
-        setProjects(data)
-        }
-    
-        fetchProjects()
-    }, [])
-
-    useEffect(() => {
-        const fetchTemplates = async () => {
-        const data = await getTemplates()
-        setTemplates(data.map(template => ({
-          ...template,
-          imageUrl: template.ImageUrl
-        })))
-        }
-    
-        fetchTemplates()
-    }, [])
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const data = await getProjects();
+      setProjects(data.slice(0, 3)); // Limit to 3 projects
+    };
+  
+    fetchProjects();
+  }, []);
+  
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      const data = await getTemplates();
+      setTemplates(data.slice(0, 3).map(template => ({
+        ...template,
+        imageUrl: template.ImageUrl
+      })));
+    };
+  
+    fetchTemplates();
+  }, []);
 
   // Testimonials data
   const testimonials = [
