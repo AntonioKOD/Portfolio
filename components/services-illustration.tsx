@@ -21,7 +21,7 @@ export function ServicesIllustration({ className = "", width = 500, height = 500
     return (
       <div
         className={`flex items-center justify-center bg-gradient-to-br from-primary/10 to-background rounded-lg ${className}`}
-        style={{ width, height }}
+        style={{ width: "100%", maxWidth: width, height: "auto", aspectRatio: "1/1" }}
       >
         <div className="animate-pulse text-primary/50">Loading illustration...</div>
       </div>
@@ -29,14 +29,15 @@ export function ServicesIllustration({ className = "", width = 500, height = 500
   }
 
   return (
-    <div className={`relative ${className}`} style={{ width, height }}>
+    <div className={`relative ${className}`} style={{ width: "100%", maxWidth: width, height: "auto" }}>
       <svg
-        width={width}
-        height={height}
+        width="100%"
+        height="100%"
         viewBox="0 0 500 500"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
+        preserveAspectRatio="xMidYMid meet"
       >
         {/* Background elements */}
         <motion.circle

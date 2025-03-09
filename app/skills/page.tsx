@@ -18,6 +18,7 @@ import {SiPostgresql} from "react-icons/si"
 import { SiGraphql } from "react-icons/si"
 import {VscFileCode} from "react-icons/vsc"
 import { SiFirebase, SiAmazonwebservices, SiGit, SiDocker, SiJest, SiWebpack, SiFigma, SiVsco, SiPostman } from "react-icons/si"
+import Link from "next/link"
 
 
 export default function SkillsPage() {
@@ -217,9 +218,12 @@ export default function SkillsPage() {
               Let's collaborate on your next project and put my skills to work for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href="/contact">
               <Button size="lg" variant="secondary" className="font-medium">
                 Contact Me
               </Button>
+              </Link>
+              <Link href="/projects">
               <Button
                 size="lg"
                 variant="outline"
@@ -227,6 +231,7 @@ export default function SkillsPage() {
               >
                 View Projects
               </Button>
+              </Link>
             </div>
           </div>
         </div>

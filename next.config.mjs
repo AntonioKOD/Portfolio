@@ -15,6 +15,17 @@ const nextConfig = {
         },
       ],
     },
+    experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
+  // Enable static optimization where possible
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   };
   
   export default nextConfig;

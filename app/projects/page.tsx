@@ -367,9 +367,11 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex justify-center mt-12">
+            <Link href='/contact'>
             <Button size="lg" className="font-medium">
               Start a Project <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -383,9 +385,7 @@ export default function ProjectsPage() {
               Let's discuss how I can help bring your vision to life with the perfect technical solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" variant="secondary" className="font-medium">
-                Contact Me
-              </Button>
+            <Link href='/services'>
               <Button
                 size="lg"
                 variant="outline"
@@ -393,6 +393,7 @@ export default function ProjectsPage() {
               >
                 View Services
               </Button>
+              </Link>
             </div>
           </div>
         </div>

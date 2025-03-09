@@ -4,8 +4,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import ServiceCard from "@/components/service-card"
 import { Layout, Cpu, Code, Layers, Zap, MessageSquare, PenTool, Database, Globe, LineChart } from "lucide-react"
 import { ServicesIllustration } from "@/components/services-illustration"
-
 import { BenefitsIllustration } from "@/components/benefits-illustration"
+import Link from "next/link"
 
 export default function ServicesPage() {
   // Service categories with their respective services
@@ -83,31 +83,30 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-12 md:py-24 bg-muted/30">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="flex flex-col justify-center space-y-4">
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
                 Professional Services
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                 Expert Solutions for Your <span className="text-primary">Digital Needs</span>
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Comprehensive development and consulting services to bring your digital vision to life with quality,
                 efficiency, and innovation.
               </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <div className="flex flex-col sm:flex-row gap-2 pt-4">
+                <Link href='/contact'>
                 <Button size="lg" className="font-medium">
                   Get a Quote <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button size="lg" variant="outline" className="font-medium">
-                  Learn More
-                </Button>
+                </Link>
               </div>
             </div>
             <div className="flex justify-center lg:justify-end">
-              <ServicesIllustration width={500} height={500} className="w-full max-w-[500px]" />
+              <ServicesIllustration width={500} height={500} className="w-full max-w-[500px] h-auto" />
             </div>
           </div>
         </div>
@@ -123,7 +122,7 @@ export default function ServicesPage() {
                 {category.description}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
               {category.services.map((service, serviceIndex) => (
                 <ServiceCard
                   key={serviceIndex}
@@ -146,7 +145,7 @@ export default function ServicesPage() {
               A structured approach to ensure quality results and client satisfaction
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 step: "01",
@@ -184,35 +183,37 @@ export default function ServicesPage() {
       {/* Benefits Section */}
       <section className="py-12 md:py-16">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="flex justify-center">
-            <BenefitsIllustration className="w-full max-w-[800px] h-[500px] md:h-[600px]" />
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+            <div className="flex justify-center order-2 lg:order-1">
+              <BenefitsIllustration width={500} height={500} className="w-full max-w-[400px] h-auto" />
             </div>
-            <div className="flex flex-col justify-center space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Why Choose a Custom Website</h2>
+            <div className="flex flex-col justify-center space-y-4 order-1 lg:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tighter sm:text-4xl">Why Work With Me</h2>
               <p className="text-gray-500 dark:text-gray-400">
-                A custom website offers unique advantages that template-based solutions simply can't match. When you
-                work with me, you get a website tailored specifically to your business needs and goals.
+                When you choose to work with me, you get more than just a developer. You get a dedicated partner
+                committed to your success.
               </p>
               <ul className="space-y-3">
                 {[
-                  "Unique design that reflects your brand identity",
-                  "Optimized for performance and search engines",
-                  "Responsive layout that works perfectly on all devices",
-                  "Scalable solution that grows with your business",
-                  "Custom functionality tailored to your specific needs",
-                  "Complete ownership of your website code and design",
+                  "Expertise across the full development stack",
+                  "Commitment to clean, maintainable code",
+                  "Focus on performance and user experience",
+                  "Clear communication throughout the project",
+                  "Flexible approach to accommodate changing requirements",
+                  "Ongoing support after project completion",
                 ].map((benefit, index) => (
                   <li key={index} className="flex items-start">
-                    <CheckCircle2 className="h-5 w-5 text-primary mr-2 mt-0.5" />
+                    <CheckCircle2 className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
               <div className="pt-4">
+                <Link href='/contact'>
                 <Button size="lg">
-                  Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+                  Start a Project <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -281,9 +282,12 @@ export default function ServicesPage() {
               Let's discuss your requirements and create a solution that exceeds your expectations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href='/contact'>
               <Button size="lg" variant="secondary" className="font-medium">
                 Get a Quote
               </Button>
+              </Link>
+              <Link href='/projects'>
               <Button
                 size="lg"
                 variant="outline"
@@ -291,6 +295,7 @@ export default function ServicesPage() {
               >
                 View My Work
               </Button>
+              </Link>
             </div>
           </div>
         </div>

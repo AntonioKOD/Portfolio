@@ -7,31 +7,62 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollAnimationObserver } from "@/components/scroll-animation-observer"
 import { AnimatedGradientBackground } from "@/components/animated-gradient-background"
-
 import type { SanityDocument } from "next-sanity"
-import { CalendarIcon, ArrowRightIcon, BookOpenIcon, Search, TrendingUp, Bookmark } from "lucide-react"
+import { CalendarIcon, ArrowRightIcon, BookOpenIcon, TrendingUp, Bookmark } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import BlogSearch from "@/components/blog-search"
 
 const POSTS_QUERY = `*[
-  _type == "post" && defined(slug.current)
+ _type == "post" && defined(slug.current)
+ ${
+   "" /*searchParams?.get("search") ? `&& (
+   title match "*${searchParams.get("search")}*" || 
+   excerpt match "*${searchParams.get("search")}*" ||
+   pt::text(body) match "*${searchParams.get("search")}*"
+ )` : ""*/
+ }
 ] | order(publishedAt desc)[0...12] {
-  _id, 
-  title, 
-  slug, 
-  publishedAt, 
-  excerpt, 
-  estimatedReadingTime, 
-  mainImage,
-  categories[]->{ title }
+ _id, 
+ title, 
+ slug, 
+ publishedAt, 
+ excerpt, 
+ estimatedReadingTime, 
+ mainImage,
+ categories[]->{ title }
 }`
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams?: { search?: string } }) {
   let posts: SanityDocument[] = []
 
+  const searchQuery = searchParams?.search
+
+  const updatedPostsQuery = `*[
+    _type == "post" && defined(slug.current)
+    ${
+      searchQuery
+        ? `&& (
+      title match "*${searchQuery}*" || 
+      excerpt match "*${searchQuery}*" ||
+      pt::text(body) match "*${searchQuery}*"
+    )`
+        : ""
+    }
+  ] | order(publishedAt desc)[0...12] {
+    _id, 
+    title, 
+    slug, 
+    publishedAt, 
+    excerpt, 
+    estimatedReadingTime, 
+    mainImage,
+    categories[]->{ title }
+  }`
+
   try {
-    posts = await client.fetch(POSTS_QUERY)
+    posts = await client.fetch(updatedPostsQuery)
   } catch (error) {
     console.error("Error fetching posts:", error)
     return <ErrorState />
@@ -98,14 +129,7 @@ export default async function BlogPage() {
 
               {/* Search Bar */}
               <div className="max-w-md mx-auto relative">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search articles..."
-                    className="pl-10 pr-4 h-12 bg-background/80 backdrop-blur-sm border-primary/20 focus:border-primary"
-                  />
-                </div>
+                <BlogSearch />
               </div>
             </ScrollAnimationObserver>
           </div>
@@ -339,41 +363,6 @@ export default async function BlogPage() {
                 </TabsContent>
               ))}
             </Tabs>
-          </div>
-        </ScrollAnimationObserver>
-
-        {/* Newsletter Section */}
-        <ScrollAnimationObserver animation="fade-up" delay={300}>
-          <div className="mt-16 rounded-xl overflow-hidden">
-            <div className="relative bg-primary py-12 px-6">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white blur-3xl" />
-                <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-white blur-3xl" />
-              </div>
-
-              <div className="relative z-10 text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl font-bold mb-4 text-white">Stay Updated</h2>
-                <p className="text-primary-foreground/80 mb-8 text-lg">
-                  Subscribe to my newsletter and never miss new articles, tutorials, and insights.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                  <Input
-                    type="email"
-                    placeholder="Your email address"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/60 h-12"
-                  />
-                  <Button variant="secondary" size="lg" className="font-medium">
-                    Subscribe
-                  </Button>
-                </div>
-
-                <p className="text-primary-foreground/60 mt-4 text-sm">
-                  I respect your privacy. Unsubscribe at any time.
-                </p>
-              </div>
-            </div>
           </div>
         </ScrollAnimationObserver>
       </div>

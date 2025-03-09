@@ -5,14 +5,23 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteLogo } from "@/components/site-logo"
-import { cn } from "@/lib/utils"
 import { useSession } from "next-auth/react"
 import { signOut } from "next-auth/react"
+import { usePathname } from "next/navigation"
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
   const user = session?.user
+  const pathname = usePathname()
+
+  // Check if the current path is an admin route
+  const isAdminRoute = pathname?.startsWith("/admin") || pathname?.startsWith("/admin-dashboard")
+
+  // If we're on an admin route, don't render the header
+  if (isAdminRoute) {
+    return null
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -80,50 +89,52 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "md:hidden fixed inset-0 top-16 z-50 bg-background transition-transform duration-300 ease-in-out",
-          isMenuOpen ? "translate-x-0" : "translate-x-full",
-        )}
-      >
-        <nav className="container flex flex-col gap-6 p-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-lg font-medium transition-colors hover:text-primary py-2 border-b"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+      {/* Mobile Navigation - hidden by default, only shown when menu button is clicked */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 top-16 z-50 transition-all duration-300 ease-in-out">
+          {/* Solid background with no transparency */}
+          <div className="absolute inset-0 bg-background shadow-lg">
 
-          {/* Show Templates link only for authenticated users */}
-          {user &&
-            authLinks.map((link) => (
+          <nav className="container relative z-10 flex flex-col gap-6 p-6">
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-lg font-medium transition-colors hover:text-primary py-2 border-b"
+                className="text-lg font-medium transition-colors hover:text-primary py-2 border-b border-border/30"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
 
-          {user ? (
-            <Button onClick={handleSignOut} className="mt-4 w-full">
-              Logout
-            </Button>
-          ) : (
-            <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-              <Button className="mt-4 w-full">Login</Button>
-            </Link>
-          )}
-        </nav>
-      </div>
+            {/* Show Templates link only for authenticated users */}
+            {user &&
+              authLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium transition-colors hover:text-primary py-2 border-b border-border/30"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+            {user ? (
+              <Button onClick={handleSignOut} className="mt-4 w-full">
+                Logout
+              </Button>
+            ) : (
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                <Button className="mt-4 w-full">Login</Button>
+              </Link>
+            )}
+          </nav>
+        </div>
+        </div>
+      )}
     </header>
   )
 }
+
 
