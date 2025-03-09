@@ -5,7 +5,7 @@ import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { ArrowRight, BarChart, Download, Search, CalendarIcon } from 'lucide-react'
+import { ArrowRight, BarChart, Download, Search, CalendarIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -53,18 +53,18 @@ export default function TemplatesPage() {
     async function fetchTemplates() {
       setIsLoading(true)
       try {
-        console.log("Fetching templates with:", { 
-          searchTerm: debouncedSearchTerm, 
-          category: activeCategory 
-        });
-      
+        console.log("Fetching templates with:", {
+          searchTerm: debouncedSearchTerm,
+          category: activeCategory,
+        })
+
         const searchParams = {
           searchTerm: debouncedSearchTerm,
-          category: activeCategory !== "All" ? activeCategory : undefined
+          category: activeCategory !== "All" ? activeCategory : undefined,
         }
-      
+
         const fetchedTemplates = await getTemplates(searchParams)
-        console.log("Fetched templates:", fetchedTemplates.length);
+        console.log("Fetched templates:", fetchedTemplates.length)
         setTemplates(fetchedTemplates)
       } catch (error) {
         console.error("Error fetching templates:", error)
@@ -78,13 +78,13 @@ export default function TemplatesPage() {
 
   // Update the handleSearchChange function to properly handle input changes
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Search term changed:", e.target.value);
+    console.log("Search term changed:", e.target.value)
     setSearchTerm(e.target.value)
   }
 
   // Update the handleCategoryChange function to properly handle category changes
   const handleCategoryChange = (category: string) => {
-    console.log("Category changed:", category);
+    console.log("Category changed:", category)
     setActiveCategory(category)
   }
 
@@ -201,7 +201,7 @@ export default function TemplatesPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href={`/templates/${featuredTemplate.id}`} className="w-full">
+                <Link href={`/web-templates/${featuredTemplate.id}`} className="w-full">
                   <Button variant="default" className="w-full group">
                     View Featured Template
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
@@ -413,3 +413,4 @@ export default function TemplatesPage() {
     </div>
   )
 }
+

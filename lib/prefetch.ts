@@ -2,7 +2,7 @@
 
 import { cache } from "react"
 import { getProjects } from "@/app/projects/actions"
-import { getTemplates } from "@/app/templates/actions"
+import { getTemplates } from "@/app/web-templates/actions"
 
 // Cache the data fetching functions using React cache()
 export const prefetchProjects = cache(async () => {

@@ -41,7 +41,7 @@ export async function getTemplates(searchParams?: {
 
 export async function getTemplateById(id: string) {
   try {
-    const template = await prisma.template.findUnique({
+    const template = await prisma.template.findFirst({
       where: { id },
     })
     return template

@@ -9,7 +9,7 @@ import { AnimatedGradientBackground } from "@/components/animated-gradient-backg
 import { AnimatedButton } from "@/components/animated-button"
 import { AnimatedCard, AnimatedCardContent, AnimatedCardHeader, AnimatedCardFooter } from "@/components/animated-card"
 import { ScrollAnimationObserver } from "@/components/scroll-animation-observer"
-import { getTemplates } from "@/app/templates/actions"
+import { getTemplates } from "@/app/web-templates/actions"
 import { getProjects } from "@/app/projects/actions"
 import { useState, useEffect } from "react"
 
@@ -492,7 +492,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex justify-center mt-10">
-            <Link href="/templates">
+            <Link href="/web-templates">
               <Button variant="outline" size="lg" className="group">
                 Browse All Templates
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

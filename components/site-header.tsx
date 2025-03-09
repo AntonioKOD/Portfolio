@@ -41,7 +41,7 @@ export function SiteHeader() {
   ]
 
   // Navigation links that are only shown to authenticated users
-  const authLinks = [{ href: "/templates", label: "Templates" }]
+  const authLinks = [{ href: "/web-templates", label: "Templates" }]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
