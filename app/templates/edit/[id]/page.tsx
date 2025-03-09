@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { getTemplate, updateTemplate } from '../../actions';
+import { getTemplateById, updateTemplate } from '../../actions';
 
 interface Template {
   id: string;
@@ -27,7 +27,7 @@ export default function TemplatePage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     async function fetchTemplate() {
-      const fetchedTemplate = await getTemplate(id);
+      const fetchedTemplate = await getTemplateById(id);
       setTemplate(fetchedTemplate);
     }
     fetchTemplate();

@@ -48,9 +48,25 @@ model Template {
   icon      String
   features  String[]
   tags      String[]
+  category  String
+  price     String
+  downloads Int @default(0)
   ImageUrl  String
   previewLink String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Project {
+  id      String   @id @default(cuid())
+  name     String
+  content  String
+  imageUrl String
+  link     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  technologies String[]
+  featured Boolean @default(false)
+}
+
 

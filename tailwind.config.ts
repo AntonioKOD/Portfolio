@@ -7,14 +7,19 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        vivid: "#2CD4D9",
-        indigo: "#3A3D98",
-        pure: "#FFFFFF",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -48,78 +53,103 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // New vibrant accent colors
+        teal: {
+          light: "#5eead4",
+          DEFAULT: "#14b8a6",
+          dark: "#0f766e",
+        },
+        purple: {
+          light: "#d8b4fe",
+          DEFAULT: "#a855f7",
+          dark: "#7e22ce",
+        },
+        amber: {
+          light: "#fcd34d",
+          DEFAULT: "#f59e0b",
+          dark: "#b45309",
+        },
+        rose: {
+          light: "#fda4af",
+          DEFAULT: "#f43f5e",
+          dark: "#be123c",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      typography: (theme: any) => ({
-        DEFAULT: {
-          css: {
-            color: theme("colors.gray.700"),
-            a: {
-              color: theme("colors.indigo"),
-              "&:hover": {
-                color: theme("colors.vivid"),
-              },
-            },
-            "h2, h3, h4": {
-              color: theme("colors.indigo"),
-            },
-            "code::before": {
-              content: '""',
-            },
-            "code::after": {
-              content: '""',
-            },
-            code: {
-              color: theme("colors.indigo"),
-              backgroundColor: theme("colors.gray.100"),
-              padding: "0.25rem 0.4rem",
-              borderRadius: "0.25rem",
-              fontWeight: "400",
-            },
-            "pre code": {
-              color: theme("colors.gray.200"),
-              backgroundColor: "transparent",
-              padding: 0,
-            },
-            pre: {
-              backgroundColor: theme("colors.gray.800"),
-              color: theme("colors.gray.200"),
-              padding: "1rem",
-              borderRadius: "0.5rem",
-              overflow: "auto",
-            },
-          },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        dark: {
-          css: {
-            color: theme("colors.gray.300"),
-            a: {
-              color: theme("colors.vivid"),
-              "&:hover": {
-                color: theme("colors.vivid"),
-              },
-            },
-            "h2, h3, h4": {
-              color: theme("colors.gray.100"),
-            },
-            code: {
-              color: theme("colors.vivid"),
-              backgroundColor: theme("colors.gray.800"),
-            },
-            pre: {
-              backgroundColor: theme("colors.gray.900"),
-              color: theme("colors.gray.200"),
-            },
-          },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
-      }),
+        // New animations
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in-down": {
+          "0%": { opacity: "0", transform: "translateY(-20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in-right": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-in-left": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "bounce-light": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-light": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
+        },
+        "gradient-flow": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        // New animation classes
+        "fade-in": "fade-in 0.5s ease-out",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
+        "fade-in-down": "fade-in-down 0.5s ease-out",
+        "slide-in-right": "slide-in-right 0.5s ease-out",
+        "slide-in-left": "slide-in-left 0.5s ease-out",
+        "bounce-light": "bounce-light 3s ease-in-out infinite",
+        "pulse-light": "pulse-light 2s ease-in-out infinite",
+        "gradient-flow": "gradient-flow 3s ease infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-diagonal": "linear-gradient(45deg, var(--tw-gradient-stops))",
+      },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 }
 
 export default config
