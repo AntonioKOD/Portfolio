@@ -21,6 +21,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    metadataBase: 'https://www.codewithtoni.com'
   },
   // Enable static optimization where possible
   reactStrictMode: true,

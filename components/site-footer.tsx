@@ -14,19 +14,19 @@ export function SiteFooter() {
               customers, and foster growth.
             </p>
             <div className="flex mt-6 space-x-4">
-              <Link href="https://twitter.com" className="text-muted-foreground hover:text-primary">
+              <Link href="https://twitter.com/antonio_kodheli" className="text-muted-foreground hover:text-primary">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="https://github.com" className="text-muted-foreground hover:text-primary">
+              <Link href="https://github.com/AntonioKOD" className="text-muted-foreground hover:text-primary">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
-              <Link href="https://linkedin.com" className="text-muted-foreground hover:text-primary">
+              <Link href="https://www.linkedin.com/in/antonio-kodheli-1430aa290/" className="text-muted-foreground hover:text-primary">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="mailto:contact@codewithtoni.com" className="text-muted-foreground hover:text-primary">
+              <Link href="mailto:antonio_kodheli@icloud.com" className="text-muted-foreground hover:text-primary">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
