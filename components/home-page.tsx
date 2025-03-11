@@ -111,195 +111,8 @@ export default function HomePage() {
     100% { background-position: -200% 0; }
   }
 `}</style>
-      {/* Hero Section with cleaner design */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-background">
-        {/* Subtle background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-muted/30" />
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
-        </div>
-
-        <div className="container relative z-10 px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2 animate-fade-in">
-                Web Development & Technical Solutions
-              </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                Building <span className="text-primary">Modern Web</span> Experiences
-              </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Expert web development services specializing in responsive, high-performance applications that drive
-                real business results.
-              </p>
-              <div
-                className="flex flex-col gap-2 min-[400px]:flex-row pt-4 animate-fade-in"
-                style={{ animationDelay: "300ms" }}
-              >
-                <Link href="/contact">
-                  <Button size="lg" className="font-medium">
-                    Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/projects">
-                  <Button size="lg" variant="outline" className="font-medium">
-                    View My Work
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <div
-                className="relative w-full max-w-[500px] aspect-square animate-fade-in code-editor-container"
-                style={{ animationDelay: "300ms" }}
-              >
-                {/* Code editor mockup */}
-                <div className="absolute inset-0 rounded-lg border bg-card shadow-xl overflow-hidden">
-                  <div className="h-10 bg-muted border-b flex items-center px-4">
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500" />
-                      <div className="w-3 h-3 rounded-full bg-amber-500" />
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                    </div>
-                    <div className="mx-auto font-mono text-xs text-muted-foreground flex items-center">
-                      <span className="mr-2">awesome-component.tsx</span>
-                      <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                    </div>
-                  </div>
-                  <div className="p-4 font-mono text-sm overflow-hidden">
-                    <div className="text-muted-foreground">// Welcome to CodeWithToni</div>
-                    <div className="mt-2">
-                      <span className="text-blue-500">import</span> <span className="text-foreground">{"{"}</span>{" "}
-                      <span className="text-amber-500">motion, AnimatePresence</span>{" "}
-                      <span className="text-foreground">{"}"}</span> <span className="text-blue-500">from</span>{" "}
-                      <span className="text-green-500">&apos;framer-motion&apos;</span>
-                      <span className="text-foreground">;</span>
-                    </div>
-                    <div className="mt-1">
-                      <span className="text-blue-500">import</span>{" "}
-                      <span className="text-amber-500">
-                        {"{"} useState, useEffect {"}"}
-                      </span>{" "}
-                      <span className="text-blue-500">from</span>{" "}
-                      <span className="text-green-500">&apos;react&apos;</span>
-                      <span className="text-foreground">;</span>
-                    </div>
-                    <div className="mt-4">
-                      <span className="text-purple-500">const</span>{" "}
-                      <span className="text-amber-500">AwesomeComponent</span>{" "}
-                      <span className="text-foreground">= () {"=>"}</span>{" "}
-                      <span className="text-foreground">{`{`}</span>
-                    </div>
-                    <div className="mt-1 ml-4">
-                      <span className="text-blue-500">const</span>{" "}
-                      <span className="text-amber-500">[isAnimating, setIsAnimating]</span>{" "}
-                      <span className="text-foreground">= useState(</span>
-                      <span className="text-blue-500">false</span>
-                      <span className="text-foreground">);</span>
-                    </div>
-                    <div className="mt-1 ml-4">
-                      <span className="text-blue-500">const</span> <span className="text-amber-500">variants</span>{" "}
-                      <span className="text-foreground">= {"{"}</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-amber-500">hidden:</span> <span className="text-foreground">{"{"}</span>{" "}
-                      <span className="text-purple-500">opacity:</span> <span className="text-blue-500">0</span>
-                      <span className="text-foreground">, </span>
-                      <span className="text-purple-500">y:</span> <span className="text-blue-500">20</span>{" "}
-                      <span className="text-foreground">{"}"}</span>
-                      <span className="text-foreground">,</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-amber-500">visible:</span> <span className="text-foreground">{"{"}</span>{" "}
-                      <span className="text-purple-500">opacity:</span> <span className="text-blue-500">1</span>
-                      <span className="text-foreground">, </span>
-                      <span className="text-purple-500">y:</span> <span className="text-blue-500">0</span>{" "}
-                      <span className="text-foreground">{"}"}</span>
-                    </div>
-                    <div className="mt-1 ml-4">
-                      <span className="text-foreground">{"}"};</span>
-                    </div>
-                    <div className="mt-3 ml-4">
-                      <span className="text-blue-500">return</span> <span className="text-foreground">(</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-foreground">{"<"}</span>
-                      <span className="text-amber-500">motion.div</span>
-                      <span className="text-purple-500"> initial</span>
-                      <span className="text-foreground">=&lbrace;</span>
-                      <span className="text-amber-500">"hidden"</span>
-                      <span className="text-foreground">&rbrace;</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-purple-500"> animate</span>
-                      <span className="text-foreground">=&lbrace;</span>
-                      <span className="text-amber-500">"visible"</span>
-                      <span className="text-foreground">&rbrace;</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-purple-500"> variants</span>
-                      <span className="text-foreground">=&lbrace;variants&rbrace;</span>
-                      <span className="text-foreground">{">"}</span>
-                    </div>
-                    <div className="mt-1 ml-12">
-                      <span className="text-foreground">{"<"}</span>
-                      <span className="text-amber-500">h1</span>
-                      <span className="text-foreground">{">"}</span>
-                      <span className="text-green-500">Build something amazing!</span>
-                      <span className="text-foreground">{"</"}</span>
-                      <span className="text-amber-500">h1</span>
-                      <span className="text-foreground">{">"}</span>
-                    </div>
-                    <div className="mt-1 ml-8">
-                      <span className="text-foreground">{"</"}</span>
-                      <span className="text-amber-500">motion.div</span>
-                      <span className="text-foreground">{">"}</span>
-                    </div>
-                    <div className="mt-1 ml-4">
-                      <span className="text-foreground">);</span>
-                    </div>
-                    <div className="mt-1">
-                      <span className="text-foreground">{"}"};</span>
-                    </div>
-                    <div className="mt-4">
-                      <span className="text-blue-500">export</span> <span className="text-blue-500">default</span>{" "}
-                      <span className="text-amber-500">AwesomeComponent</span>
-                      <span className="text-foreground">;</span>
-                    </div>
-                    <div className="absolute bottom-4 right-4 flex items-center">
-                      <div className="text-xs text-primary animate-pulse">
-                        // Crafting digital experiences with code
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 bg-muted/30">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {[
-              { value: "100+", label: "Projects Completed" },
-              { value: "50+", label: "Happy Clients" },
-              { value: "5+", label: "Years Experience" },
-              { value: "15+", label: "Technologies" },
-            ].map((stat, index) => (
-              <ScrollAnimationObserver key={index} animation="fade-up" delay={index * 100}>
-                <div className="flex flex-col items-center text-center p-4">
-                  <span className="text-3xl md:text-4xl font-bold text-primary">{stat.value}</span>
-                  <span className="text-sm md:text-base text-muted-foreground mt-2">{stat.label}</span>
-                </div>
-              </ScrollAnimationObserver>
-            ))}
-          </div>
-        </div>
-      </section>
+   
+     
 
       {/* Services Section */}
       <section className="py-16 md:py-24">
@@ -388,7 +201,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <ScrollAnimationObserver key={index} animation="fade-up" delay={index * 100}>
+
                 <AnimatedCard className="overflow-hidden group">
+                <Link href={project.link}>
                   <div className="relative aspect-video overflow-hidden">
                     <Image
                       src={project.imageUrl || "/placeholder.svg"}
@@ -411,15 +226,16 @@ export default function HomePage() {
                       ))}
                     </div>
                   </AnimatedCardContent>
-                  <AnimatedCardFooter className="px-6 pb-6 pt-0">
-                    <Link
+
+                  </Link>
+                  <Link
                       href={project.link}
-                      className="text-sm font-medium flex items-center text-primary hover:underline"
+                      className="text-sm font-medium flex items-center text-primary hover:underline px-6 pb-6 pt-0"
                     >
                       View Project <ExternalLink className="ml-1 h-3 w-3" />
                     </Link>
-                  </AnimatedCardFooter>
                 </AnimatedCard>
+                
               </ScrollAnimationObserver>
             ))}
           </div>
@@ -447,15 +263,18 @@ export default function HomePage() {
                 Ready-to-Use <span className="gradient-text">Templates</span>
               </h2>
               <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Download professionally designed templates to jumpstart your next project
+                If you believe you have the time to build your own website, these templates are a great starting point.
               </p>
             </div>
           </ScrollAnimationObserver>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {templates.map((template, index) => (
+              
               <ScrollAnimationObserver key={index} animation="fade-up" delay={index * 100}>
+                
                 <AnimatedCard className="overflow-hidden group">
+                <Link href={template.previewLink}>
                   <div className="relative aspect-video overflow-hidden">
                     <Image
                       src={template.imageUrl || "/placeholder.svg"}
@@ -478,8 +297,9 @@ export default function HomePage() {
                       <span>{template.downloads.toLocaleString()} downloads</span>
                     </div>
                   </AnimatedCardContent>
+                  </Link>
                   <AnimatedCardFooter className="px-6 pb-6 pt-0">
-                    <Link href={template.previewLink}>
+                  <Link href={template.previewLink}>
                       <Button variant="outline" size="sm" className="w-full">
                         <Download className="mr-2 h-4 w-4" />
                         View Template
@@ -487,7 +307,9 @@ export default function HomePage() {
                     </Link>
                   </AnimatedCardFooter>
                 </AnimatedCard>
+                
               </ScrollAnimationObserver>
+              
             ))}
           </div>
 
@@ -551,32 +373,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>*/}
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
-            <ScrollAnimationObserver animation="fade-up">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Ready to Start Your Project?</h2>
-              <p className="text-primary-foreground/80 md:text-xl">
-                Let's discuss your requirements and create a solution that exceeds your expectations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-                <AnimatedButton size="lg" variant="secondary" className="font-medium">
-                  Get a Quote
-                </AnimatedButton>
-                <AnimatedButton
-                  size="lg"
-                  variant="outline"
-                  className="bg-transparent border-primary-foreground text-white hover:bg-primary-foreground/10 font-medium"
-                >
-                  View My Work
-                </AnimatedButton>
-              </div>
-            </ScrollAnimationObserver>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

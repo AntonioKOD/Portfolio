@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
@@ -17,6 +17,9 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import ReCAPTCHA from "react-google-recaptcha"
+
+
 
 // Define the validation schema
 const loginSchema = z.object({
@@ -27,6 +30,8 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
+  const recaptchaRef = useRef(null)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -36,6 +41,10 @@ export default function LoginPage() {
     "$ initializing session...",
     "$ loading authentication module...",
   ])
+
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token)
+  }
 
   // Set up the form with react-hook-form and zod validation
   const form = useForm<LoginFormValues>({

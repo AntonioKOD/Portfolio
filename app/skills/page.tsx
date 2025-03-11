@@ -208,34 +208,6 @@ export default function SkillsPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Interested in Working Together?</h2>
-            <p className="text-primary-foreground/80 md:text-xl">
-              Let's collaborate on your next project and put my skills to work for you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href="/contact">
-              <Button size="lg" variant="secondary" className="font-medium">
-                Contact Me
-              </Button>
-              </Link>
-              <Link href="/projects">
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-primary-foreground text-white hover:bg-primary-foreground/10 font-medium"
-              >
-                View Projects
-              </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

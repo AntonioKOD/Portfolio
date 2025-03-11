@@ -74,6 +74,7 @@ export default function ProjectCard({
   };
 
   return (
+    <Link href={link}>
     <Card className="overflow-hidden group border-none shadow-md hover:shadow-xl transition-all duration-300">
       <div className="relative aspect-video overflow-hidden">
         <Image
@@ -110,5 +111,6 @@ export default function ProjectCard({
         </Link>
       </CardFooter>
     </Card>
+    </Link>
   )
 }

@@ -93,8 +93,8 @@ export function AnimatedHero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.9 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
             className="flex justify-center lg:justify-end"
           >
@@ -102,16 +102,137 @@ export function AnimatedHero() {
               <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-primary/20 to-secondary/20 animate-pulse-light" />
               <div className="absolute inset-4 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center overflow-hidden">
                 <div className="w-full h-full relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-accent/20 animate-spin-slow" />
-                    <div
-                      className="absolute w-48 h-48 rounded-full border-2 border-dashed border-white/20 animate-spin-slow"
-                      style={{ animationDirection: "reverse" }}
-                    />
-                    <div className="absolute w-64 h-64 rounded-full border border-white/10 animate-pulse-light" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <code className="text-lg font-mono text-white">&lt;codeWithToni /&gt;</code>
-                    </div>
+                  {/* Business-friendly visualization */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    {/* Website/App representation */}
+                    <motion.div
+                      className="relative w-64 h-48 bg-white/10 rounded-lg border border-white/20 overflow-hidden mb-4"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                    >
+                      {/* Header bar */}
+                      <div className="h-6 w-full bg-primary/30 flex items-center px-2">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                          <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                          <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                        </div>
+                      </div>
+
+                      {/* Content representation */}
+                      <div className="p-3 flex flex-col space-y-2">
+                        <div className="h-4 w-3/4 bg-white/20 rounded"></div>
+                        <div className="h-4 w-1/2 bg-white/20 rounded"></div>
+                        <div className="flex space-x-2 mt-2">
+                          <div className="h-8 w-16 bg-primary/40 rounded"></div>
+                          <div className="h-8 w-16 bg-accent/40 rounded"></div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 mt-2">
+                          <div className="h-12 bg-white/20 rounded"></div>
+                          <div className="h-12 bg-white/20 rounded"></div>
+                          <div className="h-12 bg-white/20 rounded"></div>
+                          <div className="h-12 bg-white/20 rounded"></div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Connecting elements */}
+                    <motion.div
+                      className="flex items-center justify-center space-x-8 mt-2"
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      <motion.div
+                        className="flex flex-col items-center"
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
+                      >
+                        <div className="w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-white"
+                          >
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <path d="M20.4 14.5 16 10 4 20"></path>
+                          </svg>
+                        </div>
+                        <span className="text-xs mt-1 text-white/80">Design</span>
+                      </motion.div>
+
+                      <motion.div
+                        className="flex flex-col items-center"
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      >
+                        <div className="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-white"
+                          >
+                            <path d="M12 19c-2.3 0-6.4-.2-8.1-.6-.7-.2-1.2-.7-1.4-1.4-.3-1.1-.5-3.4-.5-5s.2-3.9.5-5c.2-.7.7-1.2 1.4-1.4C5.6 5.2 9.7 5 12 5s6.4.2 8.1.6c.7.2 1.2.7 1.4 1.4.3 1.1.5 3.4.5 5s-.2 3.9-.5 5c-.2.7-.7 1.2-1.4 1.4-1.7.4-5.8.6-8.1.6 0 0 0 0 0 0z"></path>
+                            <polygon points="10 15 15 12 10 9"></polygon>
+                          </svg>
+                        </div>
+                        <span className="text-xs mt-1 text-white/80">Develop</span>
+                      </motion.div>
+
+                      <motion.div
+                        className="flex flex-col items-center"
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                      >
+                        <div className="w-12 h-12 rounded-full bg-rose-dark/30 flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-white"
+                          >
+                            <path d="M12 2v4"></path>
+                            <path d="M12 18v4"></path>
+                            <path d="m4.93 4.93 2.83 2.83"></path>
+                            <path d="m16.24 16.24 2.83 2.83"></path>
+                            <path d="M2 12h4"></path>
+                            <path d="M18 12h4"></path>
+                            <path d="m4.93 19.07 2.83-2.83"></path>
+                            <path d="m16.24 7.76 2.83-2.83"></path>
+                          </svg>
+                        </div>
+                        <span className="text-xs mt-1 text-white/80">Launch</span>
+                      </motion.div>
+                    </motion.div>
+
+                    <motion.div
+                      className="mt-4 text-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                    >
+                      <span className="text-lg font-medium text-white">Your Vision, Expertly Delivered</span>
+                    </motion.div>
                   </div>
                 </div>
               </div>

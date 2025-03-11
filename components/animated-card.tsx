@@ -16,10 +16,10 @@ export function AnimatedCard({
   children,
   className,
   glowOnHover = true,
-  tiltEffect = true,
+  tiltEffect = false, // Disabled tilt effect by default
   ...props
 }: AnimatedCardProps) {
-  const [isTilted, setIsTilted] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -31,36 +31,26 @@ export function AnimatedCard({
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const tiltX = (y - centerY) / 10
-    const tiltY = (centerX - x) / 10
-
+    // Just track mouse position for subtle glow effect, but don't apply tilt
     setMousePosition({ x, y })
-    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`
   }
 
   const handleMouseEnter = () => {
-    setIsTilted(true)
+    setIsHovered(true)
   }
 
   const handleMouseLeave = () => {
-    setIsTilted(false)
+    setIsHovered(false)
     if (cardRef.current) {
-      cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)"
+      // Reset any transforms
+      cardRef.current.style.transform = "none"
     }
   }
 
   return (
     <Card
       ref={cardRef}
-      className={cn(
-        "card-hover-effect transition-all duration-300",
-        glowOnHover && "hover:shadow-[0_0_15px_rgba(94,234,212,0.3)] dark:hover:shadow-[0_0_15px_rgba(94,234,212,0.2)]",
-        isTilted && "transition-transform duration-200",
-        className,
-      )}
+      className={cn("transition-shadow duration-300", glowOnHover && isHovered && "shadow-md", className)}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -68,12 +58,12 @@ export function AnimatedCard({
     >
       {children}
 
-      {/* Glow effect */}
-      {glowOnHover && isTilted && (
+      {/* Subtle glow effect without movement */}
+      {glowOnHover && isHovered && (
         <div
-          className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 pointer-events-none transition-opacity duration-300"
+          className="absolute inset-0 rounded-lg opacity-0 hover:opacity-30 pointer-events-none transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(94, 234, 212, 0.15), transparent 50%)`,
+            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(94, 234, 212, 0.15), transparent 70%)`,
           }}
         />
       )}
@@ -81,6 +71,7 @@ export function AnimatedCard({
   )
 }
 
+// Keep these exports to maintain compatibility with existing code
 export const AnimatedCardHeader = CardHeader
 export const AnimatedCardContent = CardContent
 export const AnimatedCardFooter = CardFooter

@@ -375,29 +375,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Have a Project in Mind?</h2>
-            <p className="text-primary-foreground/80 md:text-xl">
-              Let's discuss how I can help bring your vision to life with the perfect technical solution.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link href='/services'>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-primary-foreground text-white hover:bg-primary-foreground/10 font-medium"
-              >
-                View Services
-              </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
