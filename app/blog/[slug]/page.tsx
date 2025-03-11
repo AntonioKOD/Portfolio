@@ -5,7 +5,6 @@ import { PortableText } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
 import { config as sanityConfig, client } from "@/lib/sanity"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react"
 import Head from "next/head"
 

@@ -9,8 +9,14 @@ import { ScrollAnimationObserver } from "@/components/scroll-animation-observer"
 import { AnimatedGradientBackground } from "@/components/animated-gradient-background"
 import type { SanityDocument } from "next-sanity"
 import { CalendarIcon, ArrowRightIcon, BookOpenIcon, TrendingUp, Bookmark } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { config as sanityConfig } from "@/lib/sanity"
 import BlogSearch from "@/components/blog-search"
+import imageUrlBuilder from "@sanity/image-url"
+
+const builder = imageUrlBuilder({
+  ...sanityConfig,
+  projectId: sanityConfig.projectId || "defaultProjectId"
+})
 
 const POSTS_QUERY = `*[
  _type == "post" && defined(slug.current)
@@ -31,6 +37,10 @@ const POSTS_QUERY = `*[
  mainImage,
  categories[]->{ title }
 }`
+
+function urlFor(source: any) {
+ return builder.image(source)
+}
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -74,6 +84,7 @@ export default async function BlogPage({ searchParams }: { searchParams?: Promis
 
   const featuredPost = posts[0]
   const regularPosts = posts.slice(1)
+  const featuredPostImageUrl = featuredPost?.mainImage ? urlFor(featuredPost.mainImage).url() : null
 
   // Get popular posts (for this demo, we'll just use posts 1-3)
   const popularPosts = posts.slice(0, 3)
@@ -149,7 +160,7 @@ export default async function BlogPage({ searchParams }: { searchParams?: Promis
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative aspect-square md:aspect-auto overflow-hidden">
                   <Image
-                    src={featuredPost.mainImage?.url || "/placeholder.svg?height=600&width=600"}
+                    src={featuredPostImageUrl || "/placeholder.svg?height=600&width=600"}
                     alt={featuredPost.title}
                     fill
                     className="object-cover transition-transform duration-500 hover:scale-105"
@@ -227,7 +238,7 @@ export default async function BlogPage({ searchParams }: { searchParams?: Promis
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <Image
-                      src={post.mainImage?.url || `/placeholder.svg?height=300&width=500&text=Post+${index + 1}`}
+                      src={(post?.mainImage ? urlFor(post.mainImage).url() : null ) || `/placeholder.svg?height=300&width=500&text=Post+${index + 1}`}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-500 hover:scale-105"
@@ -307,7 +318,7 @@ export default async function BlogPage({ searchParams }: { searchParams?: Promis
                             <div className="relative aspect-video overflow-hidden">
                               <Image
                                 src={
-                                  post.mainImage?.url || `/placeholder.svg?height=300&width=500&text=Post+${index + 1}`
+                                  (post?.mainImage ? urlFor(post.mainImage).url() : null ) || `/placeholder.svg?height=300&width=500&text=Post+${index + 1}`
                                 }
                                 alt={post.title}
                                 fill
