@@ -9,5 +9,5 @@ export default withAuth({
 })
 
 export const config = {
-    matcher: ['/templates/:path*']
+    matcher: ['/web-templates/:path*']
 }

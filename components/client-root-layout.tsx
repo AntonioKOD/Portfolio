@@ -13,7 +13,7 @@ export default function ClientRootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const isAdminRoute = pathname?.startsWith("/admin") || pathname?.startsWith("/admin-dashboard")
+  const isAdminRoute = pathname?.startsWith("/admin") || pathname?.startsWith("/admin")
 
   return (
     <>
