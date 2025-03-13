@@ -296,7 +296,7 @@ export default function TemplatesPage() {
                       </CardContent>
                       <CardFooter>
                         <div className="flex gap-2 w-full">
-                          <Link href={`/templates/${template.id}`} className="flex-1">
+                          <Link href={`/web-templates/${template.id}`} className="flex-1">
                             <Button variant="default" className="w-full group">
                               View Template
                               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
