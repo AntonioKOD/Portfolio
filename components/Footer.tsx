@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { toast } from "react-hot-toast";
-import { z } from "zod";
 
 import {EmailTemplateProps} from "./email-template";
 

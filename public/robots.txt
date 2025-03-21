@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://codewithtoni.com
+
+# Sitemaps
+Sitemap: https://codewithtoni.com/sitemap.xml
